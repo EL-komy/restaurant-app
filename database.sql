@@ -141,3 +141,53 @@ INSERT INTO notifications (user_id, message, type, is_read, created_at) VALUES
 (3, 'Password changed successfully.', 'security', FALSE, NOW());
 
 
+
+#---------------------------------------------------------------------------
+
+
+
+
+CREATE TABLE menu_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    category_id INT NOT NULL,
+    description TEXT,
+    price FLOAT NOT NULL,
+    image TEXT,
+    available ENUM('yes', 'no') NOT NULL DEFAULT 'yes'
+);
+
+CREATE TABLE item_options (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    item_id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    image TEXT,
+    FOREIGN KEY (item_id) REFERENCES menu_items(id) ON DELETE CASCADE
+);
+
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    status ENUM('pending', 'preparing', 'Ready', 'Delivered') NOT NULL DEFAULT 'pending',
+    total_price FLOAT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+INSERT INTO menu_items (name, category_id, description, price, image, available) VALUES
+('Burger', 1, 'Delicious beef burger', 5.99, 'burger.jpg', 'yes'),
+('Pizza', 2, 'Cheese pizza with toppings', 8.99, 'pizza.jpg', 'yes'),
+('Pasta', 3, 'Creamy Alfredo pasta', 7.49, 'pasta.jpg', 'yes');
+
+INSERT INTO item_options (item_id, name, image) VALUES
+(1, 'Extra Cheese', 'cheese.jpg'),
+(2, 'Olives', 'olives.jpg'),
+(3, 'Garlic Bread', 'garlic_bread.jpg');
+
+INSERT INTO orders (user_id, status, total_price) VALUES
+(1, 'pending', 14.98),
+(2, 'preparing', 8.99),
+(3, 'Delivered', 5.99);
+
+
+
