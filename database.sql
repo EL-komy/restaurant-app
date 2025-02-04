@@ -39,6 +39,34 @@ CREATE TABLE `itemcontent`(
     FOREIGN KEY (item_id) REFERENCES menu_items(id) ON DELETE CASCADE,
     FOREIGN KEY (inventory_id) REFERENCES inventory(id) ON DELETE CASCADE
 );
+
+CREATE TABLE `suppliers` (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    namee VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    phone VARCHAR(20) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `inventory` (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    item_name VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL CHECK (quantity >= 0),
+    supplier_id INT,
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (supplier_id) REFERENCES suppliers(id) ON DELETE SET NULL
+);
+
+CREATE TABLE `payments` (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT NOT NULL,
+    payment_method TEXT NOT NULL,
+    amount DECIMAL(10,2) NOT NULL CHECK (amount >= 0),
+    status ENUM('pending', 'completed', 'failed') NOT NULL,
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);
+
 -- ----------------------INSERT-----------------------------
 -- Insert data into users table
 INSERT INTO `users` (user_name, email, passwordd, rolee, profile_picture, addresss) 
@@ -141,3 +169,18 @@ INSERT INTO notifications (user_id, message, type, is_read, created_at) VALUES
 (3, 'Password changed successfully.', 'security', FALSE, NOW());
 
 
+INSERT INTO `suppliers` (name, email, phone) VALUES
+('ABC Supplies', 'abc@example.com', '555-1234'),
+('XYZ Traders', 'xyz@example.com', '555-5678'),
+('Fresh Foods', 'fresh@example.com', '555-8765');
+
+INSERT INTO `inventory` (item_name, quantity, supplier_id) VALUES
+('Tomato', 100, 1),  
+('Cheese', 50, 2),   
+('Olive Oil', 200, 3);  
+
+
+INSERT INTO `payments` (order_id, payment_method, amount, status) VALUES
+(1, 'Credit Card', 50.00, 'completed'),
+(2, 'Cash', 30.00, 'pending'),
+(3, 'Paypal', 75.00, 'completed');

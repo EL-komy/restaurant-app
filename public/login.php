@@ -1,19 +1,17 @@
 <?php
 session_start();
 
-// Hardcoded users (Replace this with database in future)
 $users = [
     "user@example.com" => ["password" => "123456", "name" => "John Doe", "role" => "customer"],
     "admin@example.com" => ["password" => "admin123", "name" => "Admin User", "role" => "staff"]
 ];
 
-// Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
     $remember = isset($_POST["remember"]);
 
-    // Validate user
+
     if (isset($users[$email]) && $users[$email]["password"] === $password) {
         $_SESSION["user_id"] = $email;
         $_SESSION["user_name"] = $users[$email]["name"];
@@ -26,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             setcookie("email", "", time() - 3600, "/"); // Delete cookie
         }
 
-        // Redirect to dashboard
+        // Redirect to website home page
         header("Location: index.php");
         exit();
     } else {
