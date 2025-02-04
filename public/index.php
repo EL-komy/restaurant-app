@@ -10,13 +10,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script>
+        function toggleRadioButtons(toggleCheckbox, radioGroupid) {
+            var checkbox = document.getElementById(toggleCheckbox);
+            var radioGroup = document.getElementById(radioGroupid);
+            if (checkbox.checked) {
+                radioGroup.style.display = "block";
+            } else {
+                radioGroup.style.display = "none";
+            }
+        }
+    </script>
     <style>
-
-        body{
+        body {
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
 
-        .navbar{
+        .navbar {
             background-color: #ffffff;
             border-bottom: 1px solid #ddd;
             padding: 8px 20px;
@@ -113,23 +123,25 @@
             color: #f9001a;
             border-color: #f9001a;
         }
-       
-        .title{
+
+        .title {
             display: inline;
         }
 
-        .sub-titel{
+        .sub-titel {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
             gap: 70%;
         }
-   .ViewAll{
-    text-decoration: none;
-    color: #007aff;
 
-    font-weight: lighter;
-   }
+        .ViewAll {
+            text-decoration: none;
+            color: #007aff;
+
+            font-weight: lighter;
+        }
+
         @media (max-width: 767px) {
             .navbar-nav .nav-item .btn {
                 font-size: 13px;
@@ -275,6 +287,7 @@
             .navbar-nav .nav-item .btn {
                 font-size: 13px;
             }
+
             .carousel-item img {
                 height: 50vh !important;
                 object-fit: cover;
@@ -291,8 +304,134 @@
                 margin: 0 auto;
             }
         }
-        .card-img-top{
-            height:20vw !important; 
+
+        .card-img-top {
+            height: 20vw !important;
+        }
+
+        .customize-container {
+            border-radius: 12px;
+            padding: 25px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            background-color: #ffffff;
+            border-right: 2px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #6c757d;
+            display: block;
+            padding: 12px 10px;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background-color: #d62a2a;
+            color: white;
+            font-weight: bold;
+        }
+
+        .form-check {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .form-check:hover {
+            background-color: #e9ecef;
+        }
+
+        .form-check-input:checked+.form-check-label {
+            font-weight: bold;
+            color: #d62a2a;
+        }
+
+        .selected-item {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .selected-item img {
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .btn-add-to-cart {
+            background-color: #d62a2a;
+            color: white;
+            border: none;
+            font-size: 18px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: 0.3s ease;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #b22424;
+        }
+
+        .btn-reset {
+            background-color: #6c757d;
+            color: white;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+
+        .btn-reset:hover {
+            background-color: #5a6268;
+        }
+
+        #photo-one {
+            height: 80px;
+            width: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        #tomato-img {
+            height: 50px;
+            width: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .modal-dialog {
+            max-width: 1100px;
+        }
+
+        .modal-content {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        #meal-btn {
+            display: block;
+            margin: 5px auto;
+            width: 300px;
+            border-radius: 24px;
+            height: 40px;
+            font-weight: bold;
+        }
+
+        #meal-btn:hover {
+            width: 400px;
+            height: 50px;
+            transition: 1s;
+            background-color: white;
+            color: black;
         }
     </style>
 </head>
@@ -384,11 +523,13 @@
             <img src="./images/explore-menu-950b8776.png" alt="" width="25" style="position: relative;bottom: 1vh;">
 
         </div>
-       <div>
-        <a href="#" class="ViewAll"><h6>View All <i class="bi bi-arrow-right-square"></i></h6></a>
-       </div>
+        <div>
+            <a href="#" class="ViewAll">
+                <h6>View All <i class="bi bi-arrow-right-square"></i></h6>
+            </a>
+        </div>
     </div>
-  
+
     <!-- circles -->
     <div class="circle-container">
         <div class="circle">
@@ -403,8 +544,8 @@
             <img src="./images/fried.webp" class="circle-img" alt="Fries">
             <div class="overlay">Fries</div>
         </div>
-        
-        
+
+
         <div class="circle">
             <img src="./images/drinks.jpg" class="circle-img" alt="Drinks">
             <div class="overlay">Drinks</div>
@@ -414,23 +555,266 @@
             <img src="./images/oporto-family-burger-meal.jpg" class="circle-img" alt="Drinks">
             <div class="overlay">Drinks</div>
         </div>
-<div class="circle">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
-      </svg>
-</div>
-        
+        <div class="circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
+            </svg>
+        </div>
+
+    </div>
+
+
+
+
+    <button id="meal-btn"
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+        check your meal
+    </button>
+
+
+    <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container my-5 customize-container">
+                        <h2 class="text-center mb-4 text-danger">Customize Your Meal</h2>
+                        <div class="row">
+                            <!-- Sidebar -->
+                            <div class="col-lg-3 sidebar">
+                                <a href="#sandwich-section" class="active">Select Your Favorite Sandwich</a>
+                                <a href="#side-item-section">Select Your Favorite Side Item</a>
+                                <a href="#addon-section">Addon</a>
+                            </div>
+
+                            <div class="col-lg-5">
+                                <div id="sandwich-section" class="mb-5">
+                                    <h5 class="text-danger">Select Your Favorite Sandwich</h5>
+                                    <div class="form-check my-2">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="sandwich"
+                                            id="spicy-sandwich"
+                                            checked />
+                                        <label class="form-check-label" for="spicy-sandwich">
+                                            <img
+                                                id="photo-one"
+                                                src="./images/images.jpg"
+                                                alt="Spicy Sandwich" />
+                                            KFC Hamburger Cheeseburger
+                                        </label>
+                                    </div>
+                                    <div class="form-check my-2">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="sandwich"
+                                            id="original-sandwich" />
+                                        <label class="form-check-label" for="original-sandwich">
+                                            <img
+                                                id="photo-one"
+                                                src="./images/images (1).jpg"
+                                                alt="Original Sandwich" />
+                                            Mighty Zinger
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div id="side-item-section" class="mb-5">
+                                    <h5 class="text-danger">Select Your Favorite Side Item</h5>
+                                    <div class="form-check my-2">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="side-item"
+                                            id="coleslaw"
+                                            checked />
+                                        <label class="form-check-label" for="coleslaw">
+                                            <img
+                                                id="photo-one"
+                                                src="./images/images (2).jpg"
+                                                alt="Coleslaw" />
+                                            Coleslaw
+                                        </label>
+                                    </div>
+                                    <div class="form-check my-2">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="side-item"
+                                            id="lettuce" />
+                                        <label class="form-check-label" for="lettuce">
+                                            <img
+                                                id="photo-one"
+                                                src="./images/romaine-lettuce-1296x728-body.webp"
+                                                alt="Lettuce" />
+                                            Lettuce
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div id="addon-section" class="mb-5">
+                                    <h5 class="text-danger">Drinks</h5>
+                                    <div class="form-check my-2">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="addon"
+                                            id="mirinda"
+                                            checked />
+                                        <label class="form-check-label" for="mirinda">
+                                            <img
+                                                id="photo-one"
+                                                src="./images/mirinda-orange-can-drink-250ml-nazar-jan-s-supermarket-1_large.webp"
+                                                alt="Mirinda" />
+                                            Mirinda
+                                        </label>
+                                    </div>
+                                    <div class="form-check my-2">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="addon"
+                                            id="coke" />
+                                        <label class="form-check-label" for="coke">
+                                            <img id="photo-one" src="./images/images (3).jpg" alt="Coke" />
+                                            Coca Cola
+                                        </label>
+                                    </div>
+                                    <div class="form-check my-2">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="addon"
+                                            id="coke" />
+                                        <label class="form-check-label" for="coke">
+                                            <img id="photo-one" src="./images/51DzXSfBFwL.jpg" alt="Coke" />
+                                            7 up
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="container mt-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                id="toggleCheckbox1"
+                                                onclick="toggleRadioButtons('toggleCheckbox1', 'radioGroup1')" />
+                                            <img
+                                                src="./images/Tomato_je.jpg"
+                                                alt="صورة"
+                                                class="me-2"
+                                                width="50" />
+                                            <label class="form-check-label" for="toggleCheckbox1">Tomato</label>
+                                        </div>
+                                    </div>
+                                    <div
+                                        id="radioGroup1"
+                                        style="display: none; margin-top: 10px">
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="options1"
+                                                id="option1-1" />
+                                            <label class="form-check-label" for="option1-1">Regular</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="options1"
+                                                id="option1-2" />
+                                            <label class="form-check-label" for="option1-2">Extra</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="container mt-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                id="toggleCheckbox2"
+                                                onclick="toggleRadioButtons('toggleCheckbox2', 'radioGroup2')" />
+                                            <img
+                                                src="./images/images (4).jpg"
+                                                alt="صورة"
+                                                class="me-2"
+                                                width="50" />
+                                            <label class="form-check-label" for="toggleCheckbox2">American cheese</label>
+                                        </div>
+                                    </div>
+                                    <div
+                                        id="radioGroup2"
+                                        style="display: none; margin-top: 10px">
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="options2"
+                                                id="option2-1" />
+                                            <label class="form-check-label" for="option2-1">Regular</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="options2"
+                                                id="option2-2" />
+                                            <label class="form-check-label" for="option2-2">Extra</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 selected-item">
+                                <img
+                                    src="./images/Sargento11501.jpg"
+                                    class="img-fluid"
+                                    alt="Zinger Crunch" />
+                                <h4 class="mt-3 text-danger">Zinger Crunch</h4>
+                                <p class="text-muted">Zinger + Kantook + Coleslaw</p>
+                                <button class="btn btn-reset btn-sm mb-3">RESET</button>
+                                <h3 class="text-danger">125.00 EGP</h3>
+                                <p class="text-muted">* All prices are VAT inclusive</p>
+                                <button class="btn btn-add-to-cart w-100">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
     </div>
 
     <div class="text">
         <h5>EXCLUSIVE OFFERS </h5>
         <h5>FOR ONE </h5>
         <h5>FOR SHARING </h5>
-        <h5>SIDES & DESSERTS        </h5>
+        <h5>SIDES & DESSERTS </h5>
     </div>
 
 
-    
+
     <!-- cards -->
     <div class="container mt-5">
         <div class="row">
