@@ -1,6 +1,7 @@
-<?php
-?>
+<?php 
+require_once '../includes/login_valid.php';
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,15 +50,19 @@
     <div class="container">
         <div class="form-container">
             <h2 class="text-center">Login</h2>
-            <form action="" method="POST" enctype="multipart/form-data">
-                
+            <form action="" method="POST">
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" required>
+                    <input type="text" name="email" class="form-control" required>
+                    <?php 
+                    if (!empty($error["email"])) {
+                        echo '<p style="color:red; font-size:12px;">' . $error["email"] . '</p>';
+                    }
+                    ?>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password</label>
-                    <input type="password" name="passwordd" class="form-control" required>
+                    <input type="password" name="password" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
