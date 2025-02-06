@@ -97,12 +97,12 @@ CREATE TABLE `reservation`(
     table_status boolean,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
      FOREIGN KEY (table_id) REFERENCES tables(id) ON DELETE CASCADE,
-     FOREIGN KEY (useer_id) REFERENCES users(id) ON DELETE CASCADE
+     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE `suppliers` (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    namee VARCHAR(255) NOT NULL,
+    supplier_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     phone VARCHAR(20) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -159,23 +159,42 @@ VALUES
 (2, 2, 2, '2025-02-12', '20:00', 2, FALSE),
 (3, 3, 3, '2025-02-15', '19:30', 6, TRUE);
 
+INSERT INTO `suppliers` (supplier_name, email, phone) VALUES
+('ABC Supplies', 'abc@example.com', '555-1234'),
+('XYZ Traders', 'xyz@example.com', '555-5678'),
+('Fresh Foods', 'fresh@example.com', '555-8765');
+
+INSERT INTO `inventory` (item_name, quantity, supplier_id) VALUES
+('Tomato', 100, 1),  
+('Cheese', 50, 2),   
+('Olive Oil', 200, 3);  
+
+INSERT INTO menu_items (name, category_id, description, price, image, available) VALUES
+('Burger', 1, 'Delicious beef burger', 5.99, 'burger.jpg', 'yes'),
+('Pizza', 2, 'Cheese pizza with toppings', 8.99, 'pizza.jpg', 'yes'),
+('Pasta', 3, 'Creamy Alfredo pasta', 7.49, 'pasta.jpg', 'yes');
+
 INSERT INTO `itemcontent` (id, item_id, inventory_id) 
 VALUES 
-(1, 101, 201),
-(2, 102, 202),
-(3, 103, 203);
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3);
 
+INSERT INTO orders (user_id, status, total_price) VALUES
+(1, 'pending', 14.98),
+(2, 'preparing', 8.99),
+(3, 'Delivered', 5.99);
 
 INSERT INTO order_options (order_id, menu_item_id, customizations) VALUES
-(1, 101, 'Extra cheese, No onions'),
-(2, 102, 'Spicy level 3'),
-(3, 103, 'Gluten-free crust');
+(1, 1, 'Extra cheese, No onions'),
+(2, 2, 'Spicy level 3'),
+(3, 3, 'Gluten-free crust');
 
 
 INSERT INTO order_details (order_id, item_id, quantity, price) VALUES
-(1, 101, 2, 9.99),
-(2, 102, 1, 12.50),
-(3, 103, 3, 15.75);
+(1, 1, 2, 9.99),
+(2, 2, 1, 12.50),
+(3, 3, 3, 15.75);
 
 
 INSERT INTO reports (date, total_sales, created_at) VALUES
@@ -189,30 +208,16 @@ INSERT INTO notifications (user_id, message, type, is_read, created_at) VALUES
 (3, 'Password changed successfully.', 'security', FALSE, NOW());
 
 
-INSERT INTO menu_items (name, category_id, description, price, image, available) VALUES
-('Burger', 1, 'Delicious beef burger', 5.99, 'burger.jpg', 'yes'),
-('Pizza', 2, 'Cheese pizza with toppings', 8.99, 'pizza.jpg', 'yes'),
-('Pasta', 3, 'Creamy Alfredo pasta', 7.49, 'pasta.jpg', 'yes');
+
 
 INSERT INTO item_options (item_id, name, image) VALUES
 (1, 'Extra Cheese', 'cheese.jpg'),
 (2, 'Olives', 'olives.jpg'),
 (3, 'Garlic Bread', 'garlic_bread.jpg');
 
-INSERT INTO orders (user_id, status, total_price) VALUES
-(1, 'pending', 14.98),
-(2, 'preparing', 8.99),
-(3, 'Delivered', 5.99);
 
-INSERT INTO `suppliers` (name, email, phone) VALUES
-('ABC Supplies', 'abc@example.com', '555-1234'),
-('XYZ Traders', 'xyz@example.com', '555-5678'),
-('Fresh Foods', 'fresh@example.com', '555-8765');
 
-INSERT INTO `inventory` (item_name, quantity, supplier_id) VALUES
-('Tomato', 100, 1),  
-('Cheese', 50, 2),   
-('Olive Oil', 200, 3);  
+
 
 
 INSERT INTO `payments` (order_id, payment_method, amount, status) VALUES
