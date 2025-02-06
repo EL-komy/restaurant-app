@@ -1,5 +1,5 @@
 <?php 
-require_once '../includes/login_valid.php';
+require_once '../../config/login_valid.php';
 
 ?>
 
@@ -34,7 +34,7 @@ require_once '../includes/login_valid.php';
             width: 50%;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            background: url('images/ai-generative-3d-style-design-of-fried-chicken-in-yellow-background-photo.jpg') center/cover;
+            background: url('../../public/images/ai-generative-3d-style-design-of-fried-chicken-in-yellow-background-photo.jpg') center/cover;
         }
         .btn-primary {
             background-color: rgb(159, 39, 39);
@@ -53,7 +53,7 @@ require_once '../includes/login_valid.php';
             <form action="" method="POST">
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input type="text" name="email" class="form-control" required>
+                    <input type="text" name="email" class="form-control" >
                     <?php 
                     if (!empty($error["email"])) {
                         echo '<p style="color:red; font-size:12px;">' . $error["email"] . '</p>';
@@ -62,7 +62,12 @@ require_once '../includes/login_valid.php';
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" required>
+                    <input type="password" name="password" class="form-control" >
+                    <?php 
+                    if (!empty($error["password"])) {
+                        echo '<p style="color:red; font-size:12px;">' . $error["password"] . '</p>';
+                    }
+                    ?>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>

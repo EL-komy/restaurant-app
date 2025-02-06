@@ -1,7 +1,12 @@
 <?php
 
-require_once "../includes/valid_signup.php";
+require_once "../../config/valid_signup.php";
+require_once "../../controllers/CustomerController.php";
 
+if(!empty($errors)){
+    $customer= new CustomerController();
+    $customer->register($name, $email, $password, $picture, $address);
+}
 
 ?>
 
@@ -40,7 +45,7 @@ require_once "../includes/valid_signup.php";
             width: 50%;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            background: url('images/fryco.jpg') center/cover;
+            background: url('../../public/images/fryco.jpg') center/cover;
         }
 
         .btn-primary {

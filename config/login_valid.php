@@ -15,11 +15,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error["email"] = "Invalid email format!";
     }
 
+    if (!$password) {
+        $error["password"] = "password is required";
+    }
+
     if (isset($users[$email]) && $users[$email]["password"] === $password) {
         $_SESSION["user_id"] = $email;
         $_SESSION["user_name"] = $users[$email]["name"];
         $_SESSION["user_role"] = $users[$email]["role"];
-          header("Location: ../public/index.php");
+        header("Location: ../../index.php");
         exit();
     }
 }
