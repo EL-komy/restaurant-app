@@ -1,4 +1,4 @@
-# PHP Restaurant Application
+<!-- # PHP Restaurant Application
 
 This is a robust restaurant management system built using PHP. The application provides features for user management, menu management, order processing, table reservations, payment integration, inventory management, reporting, and notifications. It is designed to streamline restaurant operations for both staff and customers.
 
@@ -62,7 +62,7 @@ This is a robust restaurant management system built using PHP. The application p
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/your-username/php-restaurant-app.git
-   cd php-restaurant-app
+   cd php-restaurant-app -->
 
 Certainly! Below is a structured folder organization for your PHP-based Restaurant Application using Object-Oriented Programming (OOP) principles and Bootstrap for the frontend. Since you've requested not to use routing, we'll focus on organizing files logically and ensuring modularity.
 
