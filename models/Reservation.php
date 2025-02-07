@@ -1,0 +1,2 @@
+<?php
+// Reservation model
