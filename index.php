@@ -1,3 +1,6 @@
+<?php
+?>
+
 <!DOCTYPE html>
 <html lang="ar">
 
@@ -614,7 +617,7 @@
                                         <label class="form-check-label" for="spicy-sandwich">
                                             <img
                                                 id="photo-one"
-                                                src="./images/images.jpg"
+                                                src="./public/images/images.jpg"
                                                 alt="Spicy Sandwich" />
                                             KFC Hamburger Cheeseburger
                                         </label>
@@ -628,7 +631,7 @@
                                         <label class="form-check-label" for="original-sandwich">
                                             <img
                                                 id="photo-one"
-                                                src="./images/images (1).jpg"
+                                                src="./public/images/images (1).jpg"
                                                 alt="Original Sandwich" />
                                             Mighty Zinger
                                         </label>
@@ -647,7 +650,7 @@
                                         <label class="form-check-label" for="coleslaw">
                                             <img
                                                 id="photo-one"
-                                                src="./images/images (2).jpg"
+                                                src="./public/images/images (2).jpg"
                                                 alt="Coleslaw" />
                                             Coleslaw
                                         </label>
@@ -661,7 +664,7 @@
                                         <label class="form-check-label" for="lettuce">
                                             <img
                                                 id="photo-one"
-                                                src="./images/romaine-lettuce-1296x728-body.webp"
+                                                src="./public/images/romaine-lettuce-1296x728-body.webp"
                                                 alt="Lettuce" />
                                             Lettuce
                                         </label>
@@ -680,7 +683,7 @@
                                         <label class="form-check-label" for="mirinda">
                                             <img
                                                 id="photo-one"
-                                                src="./images/mirinda-orange-can-drink-250ml-nazar-jan-s-supermarket-1_large.webp"
+                                                src="./public/images/mirinda-orange-can-drink-250ml-nazar-jan-s-supermarket-1_large.webp"
                                                 alt="Mirinda" />
                                             Mirinda
                                         </label>
@@ -692,7 +695,7 @@
                                             name="addon"
                                             id="coke" />
                                         <label class="form-check-label" for="coke">
-                                            <img id="photo-one" src="./images/images (3).jpg" alt="Coke" />
+                                            <img id="photo-one" src="./public/images/images (3).jpg" alt="Coke" />
                                             Coca Cola
                                         </label>
                                     </div>
@@ -703,7 +706,7 @@
                                             name="addon"
                                             id="coke" />
                                         <label class="form-check-label" for="coke">
-                                            <img id="photo-one" src="./images/51DzXSfBFwL.jpg" alt="Coke" />
+                                            <img id="photo-one" src="./public/images/51DzXSfBFwL.jpg" alt="Coke" />
                                             7 up
                                         </label>
                                     </div>
@@ -718,7 +721,7 @@
                                                 id="toggleCheckbox1"
                                                 onclick="toggleRadioButtons('toggleCheckbox1', 'radioGroup1')" />
                                             <img
-                                                src="./images/Tomato_je.jpg"
+                                                src="./public/images/Tomato_je.jpg"
                                                 alt="صورة"
                                                 class="me-2"
                                                 width="50" />
@@ -756,7 +759,7 @@
                                                 id="toggleCheckbox2"
                                                 onclick="toggleRadioButtons('toggleCheckbox2', 'radioGroup2')" />
                                             <img
-                                                src="./images/images (4).jpg"
+                                                src="./public/images/images (4).jpg"
                                                 alt="صورة"
                                                 class="me-2"
                                                 width="50" />
@@ -788,7 +791,7 @@
 
                             <div class="col-lg-4 selected-item">
                                 <img
-                                    src="./images/Sargento11501.jpg"
+                                    src="./public/images/Sargento11501.jpg"
                                     class="img-fluid"
                                     alt="Zinger Crunch" />
                                 <h4 class="mt-3 text-danger">Zinger Crunch</h4>

@@ -18,7 +18,7 @@ class CustomerController {
             echo "Registration failed!";
         }
         else{
-            header('Location: ../../index.php');
+            // header('Location: ../../index.php');
         }
     }
 

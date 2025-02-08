@@ -1,6 +1,5 @@
 <?php
-session_start();
-
+// session_start();
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -48,11 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         if (empty($errors)) {
-            file_put_contents('users.txt', "$name - $email\n", FILE_APPEND);
-            $_SESSION['user_name'] = $name;
+            // $_SESSION['user_name'] = $name;
 
-            header("Location: index.php");
-            exit();
+            // header("Location: index.php");
+            // exit();
         }
     }
 }

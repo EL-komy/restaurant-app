@@ -3,10 +3,13 @@
 
 require_once "../../config/valid_signup.php";
 require_once "../../controllers/CustomerController.php";
-
-if(!empty($errors)){
-    $customer= new CustomerController();
-    $customer->register($name, $email, $password, $picture, $address);
+if (isset($_POST['submit'])) {
+    if (empty($errors)) {
+        $customer = new CustomerController();
+        $customer->register($name, $email, $password, $picture, $address);
+        $_SESSION['user_name'] = $name;
+        header("Location: ../../index.php");
+    }
 }
 
 ?>
@@ -63,16 +66,17 @@ if(!empty($errors)){
             color: red;
             margin-top: 5px;
         }
-        .error {
-    font-weight: bold;
-    color: red;
-    margin-top: 5px;
-    margin-bottom: 15px; 
-}
 
-.text-center{
-     margin-top: 300px;
-}
+        .error {
+            font-weight: bold;
+            color: red;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        .text-center {
+            margin-top: 300px;
+        }
     </style>
 </head>
 
