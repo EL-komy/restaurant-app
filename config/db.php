@@ -1,16 +1,21 @@
+
 <?php
 class Database {
-    public $dataIfo = 'mysql:dbname=fryco;host=localhost;port=3306';
-    public $user = 'mk';
-    public $password = '221999@mk';//221999@mk
+    private $host = "localhost";
+    private $db_name = "fryco_db";
+    private $username = "root";
+    private $password = "Lin@149555";
     public $conn;
 
     public function connect() {
+        $this->conn = null;
         try {
-            $this->conn = new PDO($this->dataIfo, $this->user, $this->password);
-            return $this->conn;
-        } catch (PDOException $e) {
-            echo "Connection Error: " . $e->getMessage();
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $exception) {
+            die("Database connection error: " . $exception->getMessage());
         }
+        return $this->conn;
     }
 }
+?>

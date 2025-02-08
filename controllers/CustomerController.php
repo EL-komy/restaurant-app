@@ -26,5 +26,19 @@ class CustomerController {
         // Logic to update menu item price
         echo "Updated menu item $itemId with new price $newPrice";
     }
-}
 
+    public function login($email, $password) {
+        $user = $this->user->login($email, $password);
+        if ($user) {
+            session_start();
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['user_name'];
+            $_SESSION['email'] = $user['email'];
+
+            echo "Login successful! Welcome, " . $_SESSION['user_name'];
+            // header('Location: ../../index.php'); 
+        } else {
+            echo "Invalid email or password!";
+        }
+    }
+}
