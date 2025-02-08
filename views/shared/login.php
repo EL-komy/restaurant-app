@@ -1,6 +1,7 @@
 <?php 
 require_once '../../config/login_valid.php';
-require_once 'controllers/CustomerController.php';
+// require_once 'controllers/CustomerController.php'; error path
+require_once '../../controllers/CustomerController.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];

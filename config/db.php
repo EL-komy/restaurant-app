@@ -2,9 +2,9 @@
 <?php
 class Database {
     private $host = "localhost";
-    private $db_name = "fryco_db";
-    private $username = "root";
-    private $password = "Lin@149555";
+    private $db_name = "fryco";
+    private $username = "mk";
+    private $password = "221999@mk";
     public $conn;
 
     public function connect() {

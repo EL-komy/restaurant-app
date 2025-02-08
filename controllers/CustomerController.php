@@ -22,10 +22,6 @@ class CustomerController {
         }
     }
 
-    public function updateMenuItem($itemId, $newPrice) {
-        // Logic to update menu item price
-        echo "Updated menu item $itemId with new price $newPrice";
-    }
 
     public function login($email, $password) {
         $user = $this->user->login($email, $password);
@@ -38,6 +34,7 @@ class CustomerController {
             echo "Login successful! Welcome, " . $_SESSION['user_name'];
             // header('Location: ../../index.php'); 
         } else {
+            var_dump($user);
             echo "Invalid email or password!";
         }
     }
