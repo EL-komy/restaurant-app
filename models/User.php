@@ -37,5 +37,17 @@ class User {
         }
         return false; 
     }
+    public function select($table,$email){
+        $selectQuery="SELECT * FROM `$table` WHERE email=$email";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        var_dump($user);
+        if($user){
+            return $user;
+        }else{
+            return false;
+        }
+    }
 }
 ?>
