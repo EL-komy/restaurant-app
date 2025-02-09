@@ -1,3 +1,16 @@
+
+<?php
+require_once '../../controllers/CustomerController.php';
+$email=$_SESSION['email'];
+if($email){
+  $controller= new CustomerController();
+  $user=$controller->select(`users`,$email);
+}else{
+    header("Location:login.php");
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,10 +68,10 @@
     <h2>Jessica Alba</h2>
     
     <div class="profile-info">
-        <div><strong>Name:</strong> Jenny Wilson</div>
-        <div><strong>Email:</strong> jenny@gmail.com</div>
-        <div><strong>Address:</strong> New York, USA</div>
-        <div><strong>Phone:</strong> 0100000000000</div>
+        <div><strong>Name:</strong> <?=$user['name']?></div>
+        <div><strong>Email:</strong> <?=$user['email']?></div>
+        <div><strong>Address:</strong> <?=$user['address']?></div>
+        <div><strong>Phone:</strong> <?=$user['phone']?></div>
     </div>
     
     <a href="editprofile.php" class="btn btn-edit">Edit Profile</a>

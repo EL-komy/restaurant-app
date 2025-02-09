@@ -41,4 +41,12 @@ class CustomerController {
             echo "Invalid email or password!";
         }
     }
+    public function select(){
+        $user = $this->user->select($table,$email);
+        if($user){
+            // session_ start();
+
+        }
+    }
+
 }
