@@ -117,6 +117,9 @@ if($email){
     <div class="profile-info">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 83959cf (showing user info)
         <div><strong>Name:</strong> <?=$user['user_name']?></div>
         <div><strong>Email:</strong> <?=$user['email']?></div>
         <div><strong>Address:</strong> <?=$user['addresss']?></div>
@@ -125,11 +128,14 @@ if($email){
         <div><strong>Email:</strong> <?=$user['email']?></div>
         <div><strong>Address:</strong> <?=$user['address']?></div>
 >>>>>>> 418de30 (showing user info)
+<<<<<<< HEAD
 =======
         <div><strong>Name:</strong> <?=$user['user_name']?></div>
         <div><strong>Email:</strong> <?=$user['email']?></div>
         <div><strong>Address:</strong> <?=$user['addresss']?></div>
 >>>>>>> 25d0ded (userProfile)
+=======
+>>>>>>> 83959cf (showing user info)
         <div><strong>Phone:</strong> <?=$user['phone']?></div>
     </div>
     
