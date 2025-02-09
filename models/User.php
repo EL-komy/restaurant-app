@@ -50,6 +50,12 @@ class User {
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         // var_dump($user);
+        
+        if($user){
+            return $user;
+        }else{
+            return false;
+        }
     }
         
     // public function select($table,$email){
