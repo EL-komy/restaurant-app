@@ -32,8 +32,8 @@ class User {
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['passwordd'])) {
-            return $user; 
+        if ($user && $password == $user['passwordd']) { 
+            return $user; //
         }
         return false; 
     }
