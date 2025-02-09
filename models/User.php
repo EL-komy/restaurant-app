@@ -7,9 +7,9 @@ class User {
         $this->conn = $db;
     }
 
-    public function register($name, $email, $password, $picture, $address) {
-        $query = "INSERT INTO users (user_name, email, passwordd, rolee, profile_picture, addresss) 
-                  VALUES (:name, :email, :password, 1, :picture, :address)";
+    public function register($name, $email, $password, $picture, $address,$phone) {
+        $query = "INSERT INTO users (user_name, email, passwordd, rolee, profile_picture, addresss,phone) 
+                  VALUES (:name, :email, :password, 1, :picture, :address,:phone)";
         
         $stmt = $this->conn->prepare($query);
         
@@ -20,6 +20,8 @@ class User {
         $stmt->bindParam(':password', $hashed_password);
         $stmt->bindParam(':picture', $picture);
         $stmt->bindParam(':address', $address);
+        $stmt->bindParam(':phone', $phone);
+
 
         return $stmt->execute();
     }
@@ -37,12 +39,18 @@ class User {
         }
         return false; 
     }
-    public function select($table,$email){
-        $selectQuery="SELECT * FROM `$table` WHERE email=$email";
+    public function select($email){
+        // $selectQuery="SELECT * FROM `users` WHERE email=$email";
+        // $stmt = $this->conn->prepare($query);
+        // $stmt->execute();
+        // var_export($email);
+        $query = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        var_dump($user);
+        // var_dump($user);
+        
         if($user){
             return $user;
         }else{

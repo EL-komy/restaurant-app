@@ -8,6 +8,7 @@ CREATE TABLE `users`(
     passwordd varchar(255),
     rolee int,
     profile_picture text,
+    phone int,
     addresss varchar(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 

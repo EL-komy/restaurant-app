@@ -1,6 +1,7 @@
 <?php
     session_start();
     $userId = isset($_SESSION['email']) ? $_SESSION['email'] : null;
+    // var_dump($userId) ;
 ?>
 
 <!DOCTYPE html>
