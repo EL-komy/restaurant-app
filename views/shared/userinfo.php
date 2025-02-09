@@ -1,12 +1,18 @@
 
 <?php
-require_once '../../controllers/CustomerController.php';
+require_once "../../controllers/CustomerController.php";
+session_start();
 $email=$_SESSION['email'];
+// var_dump($email);       
 if($email){
   $controller= new CustomerController();
-  $user=$controller->select(`users`,$email);
+    
+  $user=$controller->select($email);
+  
+
+//   var_dump($user);
 }else{
-    header("Location:login.php");
+    header("Location:./login.php");
 }
 
 
@@ -18,6 +24,7 @@ if($email){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../public/css/nav.css">
     <style>
         body {
             background: white;
@@ -64,13 +71,53 @@ if($email){
     </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../../public/images/logo2.jpg" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="#"> <i class="bi bi-check-lg"></i> Delivery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="#">Self-Pickup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="#">Dine-In</a>
+                    </li>
+                    <li class="nav-item location-select dropdown">
+                        <a class="btn btn-outline-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Choose Location
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">City 1</a></li>
+                            <li><a class="dropdown-item" href="#">City 2</a></li>
+                            <li><a class="dropdown-item" href="#">City 3</a></li>
+                            <li><a class="dropdown-item" href="#">City 4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <i class="bi bi-cart cart-icon"></i>
+                <button class="lang-btn" onclick="changeLanguage()">العربية</button>
+                <img src="../../public/images/2.jpg" class="img-fluid rounded mx-3" alt="Rounded Image" width="100px">
+
+            </div>
+        </div>
+    </nav>
     <img src="logo2.jpg" alt="Profile Picture" class="profile-picture">
-    <h2>Jessica Alba</h2>
+    <h2><?=$user['user_name']?></h2>
     
     <div class="profile-info">
-        <div><strong>Name:</strong> <?=$user['name']?></div>
+        <div><strong>Name:</strong> <?=$user['user_name']?></div>
         <div><strong>Email:</strong> <?=$user['email']?></div>
-        <div><strong>Address:</strong> <?=$user['address']?></div>
+        <div><strong>Address:</strong> <?=$user['addresss']?></div>
         <div><strong>Phone:</strong> <?=$user['phone']?></div>
     </div>
     

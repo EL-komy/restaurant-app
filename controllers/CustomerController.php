@@ -12,12 +12,14 @@ class CustomerController {
         $this->user = new User($this->db);
     }
 
-    public function register($name, $email, $password , $picture,$add) {
-        $user=$this->user->register($name, $email, $password, $picture,$add);
+    public function register($name, $email, $password , $picture,$add,$phone) {
+        $user=$this->user->register($name, $email, $password, $picture,$add,$phone);
+
         if(!$user){
             echo "Registration failed!";
         }
         else{
+            session_start();
             $_SESSION['email'] = $email;
         }
     }
@@ -41,12 +43,10 @@ class CustomerController {
             echo "Invalid email or password!";
         }
     }
-    public function select(){
-        $user = $this->user->select($table,$email);
-        if($user){
-            // session_ start();
-
-        }
+    public function select($email){
+       
+        $user = $this->user->select($email);
+        return $user;
     }
 
 }

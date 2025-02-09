@@ -6,7 +6,7 @@ require_once "../../controllers/CustomerController.php";
 if (isset($_POST['submit'])) {
     if (empty($errors)) {
         $customer = new CustomerController();
-        $customer->register($name, $email, $password, $picture, $address);
+        $customer->register($name, $email, $password, $picture, $address,$phone);
         $_SESSION['user_name'] = $name;
         header("Location: ../../index.php");
     }
