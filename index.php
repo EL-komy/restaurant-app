@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    $userId = isset($_SESSION['email']) ? $_SESSION['email'] : null;
 ?>
 
 <!DOCTYPE html>
