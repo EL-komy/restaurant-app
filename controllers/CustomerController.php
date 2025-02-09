@@ -13,12 +13,12 @@ class CustomerController {
     }
 
     public function register($name, $email, $password , $picture,$add) {
-        $result=$this->user->register($name, $email, $password, $picture,$add);
-        if(!$result){
+        $user=$this->user->register($name, $email, $password, $picture,$add);
+        if(!$user){
             echo "Registration failed!";
         }
         else{
-            // header('Location: ../../index.php');
+            $_SESSION['email'] = $email;
         }
     }
 
