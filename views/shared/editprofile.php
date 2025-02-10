@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $customer->updateUser($name, $email, !empty($password) ? $password : null, $address, $phone,$photo);
     
     header("Location: userinfo.php");
-    header("Location: userinfo.php");
+    // header("Location: userinfo.php");
     exit();
 }
 ?>

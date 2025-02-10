@@ -68,7 +68,7 @@ class CustomerController {
                 ':password' => $hashed_password,
                 ':address' => $address,
                 ':phone' => $phone,
-                ':photo' => $phone
+                ':photo' => $photo
             ]);
         } else {
             $sql = "UPDATE users SET user_name = :name, addresss = :address, phone = :phone , profile_picture = :photo
