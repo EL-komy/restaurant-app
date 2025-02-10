@@ -2,7 +2,6 @@
 require_once "../../controllers/CustomerController.php";
 session_start();
 
-
 if (!isset($_SESSION['email'])) {
     header("Location: signup.php");
     exit();
