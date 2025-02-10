@@ -2,12 +2,12 @@
 require_once "../../controllers/CustomerController.php";
 session_start();
 
-if (!isset($_SESSION['user_email'])) {
-    header("Location: register.php");
+if (!isset($_SESSION['email'])) {
+    header("Location: signup.php");
     exit();
 }
 
-$email = $_SESSION['user_email'];
+$email = $_SESSION['email'];
 $customer = new CustomerController();
 $user = $customer->getUserByEmail($email);
 
@@ -17,10 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $address = $_POST['addresss'];
     $phone = $_POST['phone'];
 
-    // تحديث البيانات مع التعامل مع كلمة المرور الفارغة
+    
     $customer->updateUser($name, $email, !empty($password) ? $password : null, $address, $phone);
     
-    header("Location: profile.php");
+    header("Location: userinfo.php");
     exit();
 }
 ?>
