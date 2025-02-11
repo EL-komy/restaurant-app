@@ -7,7 +7,7 @@ $email=$_SESSION['email'];
 if($email){
   $controller= new CustomerController();
     
-  $user=$controller->select($email);
+  $user=$controller->getUserByEmail($email);
   
 
 //   var_dump($user);
@@ -111,7 +111,7 @@ if($email){
             </div>
         </div>
     </nav>
-    <img src="logo2.jpg" alt="Profile Picture" class="profile-picture">
+    <img src="../../public/images/<?php echo $user['profile_picture']?>"  alt="Profile Picture" class="profile-picture">
     <h2><?=$user['user_name']?></h2>
     
     <div class="profile-info">

@@ -2,24 +2,30 @@
 require_once "../../controllers/CustomerController.php";
 session_start();
 
+
 if (!isset($_SESSION['email'])) {
     header("Location: signup.php");
     exit();
 }
 
 $email = $_SESSION['email'];
+// var_dump($email);
 $customer = new CustomerController();
 $user = $customer->getUserByEmail($email);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    move_uploaded_file($_FILES['picture']['tmp_name'], '../../public/images' . $_FILES['picture']['name']);
     $name = $_POST['user_name'];
     $password = $_POST['passwordd'];
     $address = $_POST['addresss'];
     $phone = $_POST['phone'];
+    $photo= $_FILES['picture']['name'];
 
+    // تحديث البيانات مع التعامل مع كلمة المرور الفارغة
+    $customer->updateUser($name, $email, !empty($password) ? $password : null, $address, $phone,$photo);
     
-    $customer->updateUser($name, $email, !empty($password) ? $password : null, $address, $phone);
-    
+    header("Location: userinfo.php");
     header("Location: userinfo.php");
     exit();
 }
@@ -59,16 +65,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="POST">
             <div class="d-flex align-items-center mb-3">
                 <img src="logo2.jpg" alt="Profile Picture" class="profile-picture me-3">
-                <input type="file" class="btn btn-danger">
+                <input type="file" class="btn btn-danger" name="picture">
             </div>
             <div class="mb-3">
                 <label class="form-label">Name</label>
                 <input type="text" class="form-control" name="user_name" 
-                       value="<?php echo htmlspecialchars($user['name']); ?>" required>
+                       value="<?php echo htmlspecialchars($user['user_name']); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input type="text" class="form-control"  readonly>
+                <input type="text" class="form-control" 
+                value="<?php echo htmlspecialchars($user['email']); ?>"  readonly>
             </div>
             <div class="mb-3">
                 <label class="form-label">New Password (leave empty to keep current)</label>
@@ -82,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3">
                 <label class="form-label">Address</label>
                 <input type="text" class="form-control" name="addresss" 
-                       value="<?php echo htmlspecialchars($user['address']); ?>">
+                       value="<?php echo htmlspecialchars($user['addresss']); ?>">
             </div>
             <div class="text-end">
                 <button type="button" class="btn btn-secondary">Cancel</button>
