@@ -8,6 +8,8 @@ class User {
     }
 
     public function register($name, $email, $password, $picture, $address,$phone) {
+        // $phone=123456789;
+
         $query = "INSERT INTO users (user_name, email, passwordd, rolee, profile_picture, addresss,phone) 
                   VALUES (:name, :email, :password, 1, :picture, :address,:phone)";
         

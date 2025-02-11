@@ -45,29 +45,45 @@ class CustomerController {
     }
 
     public function getUserByEmail($email) {
-        $user = $this->user->getUserByEmail($email);
-        if ($user) {
-            echo "User found: ";
-            print_r($user);
-        } else {
-            echo "User not found!";
-        }
+        $sql = "SELECT user_name, email, addresss, phone FROM users WHERE email = :email";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':email' => $email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function updateUser($name, $email, $password, $address, $phone) {
-        $updated = $this->user->updateUser($name, $email, $password, $address, $phone);
-        if ($updated) {
-            echo "User updated successfully!";
+    public function updateUser($name, $email, $password, $address, $phone,$photo) {
+        if (!empty($password)) {
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+            $sql = "UPDATE users SET user_name = :name, passwordd = :password, addresss = :address, phone = :phone , profile_picture = :photo  
+            WHERE email = :email";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([
+                ':name' => $name,
+                ':email' => $email,
+                ':password' => $hashed_password,
+                ':address' => $address,
+                ':phone' => $phone,
+                ':photo' => $phone
+            ]);
         } else {
-            echo "No changes made or update failed!";
+            $sql = "UPDATE users SET user_name = :name, addresss = :address, phone = :phone , profile_picture = :photo
+             WHERE email = :email";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([
+                ':name' => $name,
+                ':email' => $email,
+                ':address' => $address,
+                ':phone' => $phone,
+                ':photo' => $photo
+            ]);
         }
     }
-    public function select(){
-        $user = $this->user->select($table,$email);
-        if($user){
-            // session_ start();
+    // public function select(){
+    //     $user = $this->user->select($table,$email);
+    //     if($user){
+    //         // session_ start();
 
-        }
-    }
+    //     }
+    // }
 
 }
