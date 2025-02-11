@@ -1,20 +1,23 @@
 <?php
 
-class User {
+class User
+{
     private $conn;
 
-    public function __construct($db) {
+    public function __construct($db)
+    {
         $this->conn = $db;
     }
 
-    public function register($name, $email, $password, $picture, $address,$phone) {
+    public function register($name, $email, $password, $picture, $address, $phone)
+    {
         $query = "INSERT INTO users (user_name, email, passwordd, rolee, profile_picture, addresss,phone) 
                   VALUES (:name, :email, :password, 1, :picture, :address,:phone)";
-        
+
         $stmt = $this->conn->prepare($query);
-        
+
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        
+
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $hashed_password);
@@ -26,7 +29,8 @@ class User {
         return $stmt->execute();
     }
 
-    public function login($email, $password) {
+    public function login($email, $password)
+    {
         $query = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':email', $email);
@@ -35,11 +39,12 @@ class User {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['passwordd'])) {
-            return $user; 
+            return $user;
         }
-        return false; 
+        return false;
     }
-    public function select($email){
+    public function select($email)
+    {
         // $selectQuery="SELECT * FROM `users` WHERE email=$email";
         // $stmt = $this->conn->prepare($query);
         // $stmt->execute();
@@ -50,12 +55,28 @@ class User {
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         // var_dump($user);
-        
-        if($user){
+
+        if ($user) {
             return $user;
-        }else{
+        } else {
             return false;
         }
     }
+
+    public function selectAll()
+    {
+        $query = "SELECT * FROM users";
+        $stmt = $this->conn->prepare($query);
+        // $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $user;
+    }
+
+    public function delete($id)
+    {
+        $stmt = $this->conn->prepare("DELETE FROM users WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    }
 }
-?>

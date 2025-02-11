@@ -49,4 +49,14 @@ class CustomerController {
         return $user;
     }
 
+    public function selectAll(){
+       
+        $user = $this->user->selectAll();
+        return $user;
+    }
+
+    public function delete($id){       
+         $this->user->delete($id);
+    }
+
 }
