@@ -111,25 +111,12 @@ if($email){
             </div>
         </div>
     </nav>
-    <img src="../../public/images/<?php echo $user['profile_picture']?>"  alt="Profile Picture" class="profile-picture">
+    <img src="<?php echo '../../public/images/' . ($user['profile_picture'] ? $user['profile_picture'] : 'user.png'); ?>" alt="Proooile Picture" class="profile-picture">
     <h2><?=$user['user_name']?></h2>
     
     <div class="profile-info">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <div><strong>Name:</strong> <?=$user['user_name']?></div>
         <div><strong>Email:</strong> <?=$user['email']?></div>
         <div><strong>Address:</strong> <?=$user['addresss']?></div>
-=======
-        <div><strong>Name:</strong> <?=$user['name']?></div>
-        <div><strong>Email:</strong> <?=$user['email']?></div>
-        <div><strong>Address:</strong> <?=$user['address']?></div>
->>>>>>> 418de30 (showing user info)
-=======
-        <div><strong>Name:</strong> <?=$user['user_name']?></div>
-        <div><strong>Email:</strong> <?=$user['email']?></div>
-        <div><strong>Address:</strong> <?=$user['addresss']?></div>
->>>>>>> 25d0ded (userProfile)
         <div><strong>Phone:</strong> <?=$user['phone']?></div>
     </div>
     
