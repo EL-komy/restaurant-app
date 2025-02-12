@@ -58,10 +58,10 @@ $users=$controller->selectAll();
                                             <input type="hidden" name="id" value="' . $user['id'] . '">
                                             <button class="btn btn-danger rounded-pill" name="delete" type="submit">Delete</button>
                                           </form>';
-                                    echo '<form method="post" action="">
-                                          <input type="hidden" name="id" value="' . $user['id'] . '">
-                                          <button class="btn btn-primary rounded-pill" type="submit" name="edit">Edit</button>
-                                        </form>';
+                                    // echo '<form method="post" action="">
+                                    //       <input type="hidden" name="id" value="' . $user['id'] . '">
+                                    //       <button class="btn btn-primary rounded-pill" type="submit" name="edit">Edit</button>
+                                    //     </form>';
                                     echo '</div></td>';
                                     echo '</tr>';
                                 }
