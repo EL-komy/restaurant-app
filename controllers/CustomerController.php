@@ -49,6 +49,15 @@ class CustomerController {
         return $user;
     }
 
+    public function selectAll(){
+       
+        $user = $this->user->selectAll();
+        return $user;
+    }
+
+    public function delete($id){       
+         $this->user->delete($id);
+    }
     public function getUserByEmail($email) {
         $sql = "SELECT user_name, email, addresss, phone FROM users WHERE email = :email";
         $stmt = $this->db->prepare($sql);
@@ -90,14 +99,14 @@ class CustomerController {
 
     //     }
     // }
-    public function selectAll(){
+    // public function selectAll(){
        
-        $user = $this->user->selectAll();
-        return $user;
-    }
+    //     $user = $this->user->selectAll();
+    //     return $user;
+    // }
 
-    public function delete($id){       
-         $this->user->delete($id);
-    }
+    // public function delete($id){       
+    //      $this->user->delete($id);
+    // }
 
 }

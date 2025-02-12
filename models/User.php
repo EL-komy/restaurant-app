@@ -146,4 +146,71 @@ class User
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
+
+    // public function selectAll()
+    // {
+    //     $query = "SELECT * FROM users";
+    //     $stmt = $this->conn->prepare($query);
+    //     // $stmt->bindParam(':email', $email);
+    //     $stmt->execute();
+    //     $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     return $user;
+    // }
+
+    // public function delete($id)
+    // {
+    //     $stmt = $this->conn->prepare("DELETE FROM users WHERE id = :id");
+    //     $stmt->bindParam(':id', $id);
+    //     $stmt->execute();
+    // }
+        
+    // public function select($table,$email){
+    //     $selectQuery="SELECT * FROM `$table` WHERE email=$email";
+    //     $stmt = $this->conn->prepare($query);
+    //     $stmt->execute();
+    //     $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    //     var_dump($user);
+    //     if($user){
+    //         return $user;
+    //     }else{
+    //         return false;
+    //     }
+    // }
+
+
+
+
+    // public function getUserByEmail($email) {
+    //     $sql = "SELECT name, email, address, phone FROM users WHERE email = :email";
+    //     $stmt = $this->conn->prepare($sql);
+    //     $stmt->execute([':email' => $email]);
+    //     return $stmt->fetch(PDO::FETCH_ASSOC);
+    // }
+
+
+
+    // public function updateUser($name, $email, $password, $address, $phone) {
+    //     if (!empty($password)) {
+    //         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+    //         $sql = "UPDATE users SET name = :name, password = :password, address = :address, phone = :phone WHERE email = :email";
+    //         $stmt = $this->conn->prepare($sql);
+    //         $stmt->execute([
+    //             ':name' => $name,
+    //             ':email' => $email,
+    //             ':password' => $hashed_password,
+    //             ':address' => $address,
+    //             ':phone' => $phone
+    //         ]);
+    //     } else {
+    //         $sql = "UPDATE users SET name = :name, address = :address, phone = :phone WHERE email = :email";
+    //         $stmt = $this->conn->prepare($sql);
+    //         $stmt->execute([
+    //             ':name' => $name,
+    //             ':email' => $email,
+    //             ':address' => $address,
+    //             ':phone' => $phone
+    //         ]);
+    //     }
+    //     return $stmt->rowCount() > 0; 
+    // }
 }
