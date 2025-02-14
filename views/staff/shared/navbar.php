@@ -161,8 +161,27 @@
             </a>
           </li>
         </ul>
-      </li>
-
+      </li><!-- End Forms Nav -->
+      <li class="nav-heading">Options</li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Item Options</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="addoption.php">
+              <i class="bi bi-circle"></i><span>Add option</span>
+            </a>
+          </li>
+          <li>
+            <a href="listoption.php">
+              <i class="bi bi-circle"></i><span>List Options</span>
+            </a>
+          </li>
+         
+          
+        </ul>
+      </li><!-- End Forms Nav -->
 
       <li class="nav-heading">Pages</li>
 
