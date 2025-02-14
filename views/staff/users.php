@@ -36,7 +36,7 @@ $users=$controller->selectAll();
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Address</th>
-                                    <th data-type="date" data-format="YYYY/DD/MM">Created Date</th>
+                                    <th data-type="date" data-format="YY/DD/MM">Created Date</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>

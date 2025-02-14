@@ -120,7 +120,12 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
-     
+      <li class="nav-item">
+        <a class="nav-link " href="users.php">
+          <i class="ri-account-pin-circle-fill"></i>
+          <span>User</span>
+        </a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -136,15 +141,27 @@
             <a href="listcategory.php">
               <i class="bi bi-circle"></i><span>List Categories</span>
             </a>
-          </li>
+          </li>         
+        </ul>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#Menu-items" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Menu-items</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="Menu-items" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="editcategory.php">
-              <i class="bi bi-circle"></i><span>Edit Categories</span>
+            <a href="additem.php">
+              <i class="bi bi-circle"></i><span>Add Item</span>
             </a>
           </li>
-          
+          <li>
+            <a href="listitems.php">
+              <i class="bi bi-circle"></i><span>List Items</span>
+            </a>
+          </li>
         </ul>
-      </li><!-- End Forms Nav -->
+      </li>
 
 
       <li class="nav-heading">Pages</li>

@@ -50,4 +50,3 @@ class Category {
         return $stmt->execute();
     }
 }
-?>
