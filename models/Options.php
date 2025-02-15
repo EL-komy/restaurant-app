@@ -14,5 +14,16 @@ class Options {
         $stmt->bindParam(':image', $image);
         return $stmt->execute();
     }
+    public function select(){
+        $selectQuery="SELECT * FROM item_options";
+        $stmt = $this->conn->prepare($selectQuery);
+        $stmt->execute();  // FIXED TYPO HERE
+        $category = $stmt->fetchAll(PDO::FETCH_ASSOC);  // FIX FETCH METHOD
+        if($category){
+            return $category;
+        }else{
+            echo "error";
+        }
+    }
 }
 ?>
