@@ -12,18 +12,16 @@ class CustomerController {
         $this->user = new User($this->db);
     }
 
-    public function register($name, $email, $password , $picture,$add) {
-        $result=$this->user->register($name, $email, $password, $picture,$add);
-        if(!$result){
+    public function register($name, $email, $password, $picture, $add) {
+        $result = $this->user->register($name, $email, $password, $picture, $add);
+        if (!$result) {
             echo "Registration failed!";
-        }
-        else{
+        } else {
             // header('Location: ../../index.php');
         }
     }
 
     public function updateMenuItem($itemId, $newPrice) {
-        // Logic to update menu item price
         echo "Updated menu item $itemId with new price $newPrice";
     }
 
@@ -35,10 +33,18 @@ class CustomerController {
             $_SESSION['user_name'] = $user['user_name'];
             $_SESSION['email'] = $user['email'];
 
-            echo "Login successful! Welcome, " . $_SESSION['user_name'];
-            // header('Location: ../../index.php'); 
+            header('Location: ../../index.php');
+            exit();
         } else {
-            echo "Invalid email or password!";
+            return false;
         }
+    }
+
+    public function logout() {
+        session_start();
+        session_unset();
+        session_destroy();
+        header("Location: ../../pages/login.php");
+        exit();
     }
 }

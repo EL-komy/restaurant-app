@@ -2,15 +2,17 @@
 require_once '../../config/login_valid.php';
 require_once '../../controllers/CustomerController.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+$flag = null;
+$email = isset($_POST['email']) ? trim($_POST['email']) : "";
 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($error)) {
     $controller = new CustomerController();
-    $controller->login($email, $password);
+    $flag = $controller->login($_POST['email'], $_POST['password']);
+    
+    if (!$flag) {
+        $error["login"] = "Invalid email or password";
+    }
 }
-?>
-
 ?>
 
 <!DOCTYPE html>
@@ -38,12 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         .form-container {
             width: 50%;
-            padding: 10px;
+            padding: 20px;
         }
         .image-container {
             width: 50%;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             background: url('../../public/images/ai-generative-3d-style-design-of-fried-chicken-in-yellow-background-photo.jpg') center/cover;
         }
         .btn-primary {
@@ -54,6 +54,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-color: darkred;
             border-color: darkred;
         }
+        .error-text {
+            color: red;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -63,22 +67,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form action="" method="POST">
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input type="text" name="email" class="form-control" >
-                    <?php 
-                    if (!empty($error["email"])) {
-                        echo '<p style="color:red; font-size:12px;">' . $error["email"] . '</p>';
-                    }
-                    ?>
+                    <input type="text" name="email" class="form-control" value="<?= htmlspecialchars($email) ?>">
+                    <?php if (!empty($error["email"])): ?>
+                        <p class="error-text"><?= $error["email"] ?></p>
+                    <?php endif; ?>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" >
-                    <?php 
-                    if (!empty($error["password"])) {
-                        echo '<p style="color:red; font-size:12px;">' . $error["password"] . '</p>';
-                    }
-                    ?>
+                    <input type="password" name="password" class="form-control">
+                    <?php if (!empty($error["password"])): ?>
+                        <p class="error-text"><?= $error["password"] ?></p>
+                    <?php endif; ?>
                 </div>
+                <?php if (!empty($error["login"])): ?>
+                    <p class="error-text text-center"><?= $error["login"] ?></p>
+                <?php endif; ?>
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
         </div>

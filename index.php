@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +33,15 @@
         body {
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
+        .btn{
+            font-size: 14px;
+            padding: 6px 14px;
+            border: 2px solid #f9001a;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: color 0.3s, background-color 0.3s;
+            margin-left: 10px;
+              }
 
         .navbar {
             background-color: #ffffff;
@@ -436,50 +450,58 @@
             background-color: white;
             color: black;
         }
+
     </style>
 </head>
 
 <body>
-    <!-- nav -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="./public/images/logo2.jpg" alt="Logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light" href="#"> <i class="bi bi-check-lg"></i> Delivery</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light" href="#">Self-Pickup</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light" href="#">Dine-In</a>
-                    </li>
-                    <li class="nav-item location-select dropdown">
-                        <a class="btn btn-outline-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Choose Location
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">City 1</a></li>
-                            <li><a class="dropdown-item" href="#">City 2</a></li>
-                            <li><a class="dropdown-item" href="#">City 3</a></li>
-                            <li><a class="dropdown-item" href="#">City 4</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <i class="bi bi-cart cart-icon"></i>
-                <button class="lang-btn" onclick="changeLanguage()">العربية</button>
-                <button class="login-btn">Log In</button>
-            </div>
+
+
+<!-- nav -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="./public/images/logo2.jpg" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="btn btn-outline-light" href="#"> <i class="bi bi-check-lg"></i> Delivery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-light" href="#">Self-Pickup</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-light" href="#">Dine-In</a>
+                </li>
+                <li class="nav-item location-select dropdown">
+                    <a class="btn btn-outline-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Choose Location
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">City 1</a></li>
+                        <li><a class="dropdown-item" href="#">City 2</a></li>
+                        <li><a class="dropdown-item" href="#">City 3</a></li>
+                        <li><a class="dropdown-item" href="#">City 4</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <i class="bi bi-cart cart-icon"></i>
+            <button class="lang-btn" onclick="changeLanguage()">العربية</button>
+
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="config\logout.php" class="btn btn-danger">Log Out</a>
+            <?php else: ?>
+                <a href=".\views\shared\login.php" class="btn btn-danger">Log In</a>
+            <?php endif; ?>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- slider -->
     <header>
