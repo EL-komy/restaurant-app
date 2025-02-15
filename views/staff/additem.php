@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 
   $destination = "../../public/images/" . basename($_FILES['image']['name']);
 
-  var_export($_FILES['image']['name']);
+  // var_export($_FILES['image']['name']);
 
   move_uploaded_file($_FILES['image']['tmp_name'], $destination);
   $item = new MenuController();
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 }
 $cat = new CategoryController();
 $all = $cat->select();
-// var_export($all);
+
 
 ?>
 <main id="main" class="main">
@@ -50,7 +50,7 @@ $all = $cat->select();
             <!-- General Form Elements -->
             <form method="POST" enctype="multipart/form-data">
               <?php if ($category): ?>
-                <h3 class="text-success">Category inserted successfully</h3>
+                <h3 class="text-success">Item inserted successfully</h3>
               <?php endif; ?>
               <div class="row mb-3">
                 <label for="inputText" class="col-sm-2 col-form-label">Name</label>
