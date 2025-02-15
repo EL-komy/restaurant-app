@@ -22,7 +22,7 @@ $cat=$item->select();
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
       
-      <li class="breadcrumb-item active"><a href="category.php">Add Item</a></li>
+      <li class="breadcrumb-item active"><a href="category.php">List Items</a></li>
     </ol>
   </nav>
 </div><!-- End Page Title -->
