@@ -21,5 +21,10 @@ class OptionsController {
         // Call the model's insert method
         return $this->options->insert($item_id, $name, $image);
     }
+    public function select(){
+        $option=$this->options->select();
+        return $option;
+
+    }
 }
 ?>
