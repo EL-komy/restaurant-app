@@ -1,4 +1,5 @@
 <?php
+ob_start(); // Start output buffering
 require_once "shared/navbar.php";
 // var_dump('error');
 require_once '../../controllers/MenuController.php';
@@ -15,11 +16,14 @@ if (isset($_POST['submit'])) {
 
   $destination = "../../public/images/" . basename($_FILES['image']['name']);
 
-  var_export($_FILES['image']['name']);
+  // var_export($_FILES['image']['name']);
 
   move_uploaded_file($_FILES['image']['tmp_name'], $destination);
   $item = new MenuController();
   $item->insert($name, $category, $description, $price, $image, $available);
+
+  header("Location: listitems.php");
+  exit; // It's a good practice to call exit after a header redirect
 }
 $cat = new CategoryController();
 $all = $cat->select();

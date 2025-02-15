@@ -1,46 +1,55 @@
 <?php
+ob_start();
 require_once "shared/navbar.php";
-
 require_once '../../controllers/MenuController.php';
 require_once '../../controllers/CategoryController.php';
 
-// $cat_name='';
 if (isset($_GET['edit'])) {
   $id = $_GET['edit'];
   $item = new MenuController();
   $cat = $item->selectone($id);
+
+  $cate = new CategoryController();
+  $all = $cate->select();
+
+
   $name = $cat['name'];
   $cat_name = $cat['ctegory_name'];
   $description = $cat['description'];
   $price = $cat['price'];
+  $image = $cat['image'];
   $available = $cat['available'];
+}
 
-  $cat = new CategoryController();
-  $all = $cat->select();
+if (isset($_POST['submit'])) {
+  $name = $_POST['name'];
+  $cat_name = $_POST['ctegory_name'];
+  $description = $_POST['description'];
+  $price = $_POST['price'];
+  $available = $_POST['available'];
+  $image = $_FILES['image']['name'];
 
-  if (isset($_POST['submit'])) {
-    // $name = $_POST['category'];
-    $name = $_POST['name'];
-    $cat_name = $_POST['ctegory_name'];
-    $description = $_POST['description'];
-    $price = $_POST['price'];
-    $available = $_POST ['available'];
+  $destination = "../../public/images/" . basename($_FILES['image']['name']);
+  move_uploaded_file($_FILES['image']['tmp_name'], $destination);
 
-    // $category=new CategoryController();
-    $category->update($id, $name);
-  }
+  $item->update($id, $name, $cat_name, $description, $price, $available, $image);
+  header("Location: listitems.php");
+  exit;
+
+  // $category=new CategoryController();
+  // $category->update($id, $name);
 }
 
 ?>
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>EDIT category</h1>
+    <h1>Edit Item</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
 
-        <li class="breadcrumb-item active"><a href="listcategory.php">editcategory</a></li>
+        <li class="breadcrumb-item active"><a href="listitems.php">listitems</a></li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -54,21 +63,21 @@ if (isset($_GET['edit'])) {
             <h5 class="card-title">Edit Item</h5>
 
             <!-- General Form Elements -->
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
               <?php if ($category): ?>
-                <h3 class="text-success">Category updated successfully</h3>
+                <h3 class="text-success">Item updated successfully</h3>
               <?php endif; ?>
               <div class="row mb-3">
                 <label for="inputText" class="col-sm-2 col-form-label">Edit Item</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" value="<?= $name; ?>" name="category">
+                  <input type="text" class="form-control" value="<?= $name; ?>" name="name">
                 </div>
               </div>
 
               <div class="row mb-3">
                 <label for="inputText" class="col-sm-2 col-form-label">Category</label>
                 <div class="col-sm-10">
-                  <select class="form-control" name="category">
+                  <select class="form-control" name="ctegory_name">
                     <?php foreach ($all as $c) : ?>
                       <option value="<?php echo $c['id'] ?>" <?php echo ($c['id'] == $id) ? 'selected' : ''; ?>>
                         <?php echo $c['ctegory_name'] ?>
@@ -81,7 +90,7 @@ if (isset($_GET['edit'])) {
               <div class="row mb-3">
                 <label for="inputText" class="col-sm-2 col-form-label">Description</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" value="<?= $description; ?> "name="description" >
+                  <input type="text" class="form-control" value="<?= $description; ?> " name="description">
                 </div>
               </div>
 
@@ -95,7 +104,8 @@ if (isset($_GET['edit'])) {
               <div class="row mb-3">
                 <label for="inputText" class="col-sm-2 col-form-label">Image</label>
                 <div class="col-sm-10">
-                  <input type="file" class="form-control"  name="image">
+                  <input type="file" class="form-control" name="image">
+                  <img src="../../public/images/<?= $image ?>" width="50px" height="50px" alt="Drinks">
                 </div>
               </div>
 
@@ -118,7 +128,7 @@ if (isset($_GET['edit'])) {
               <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Update Button</label>
                 <div class="col-sm-10">
-                  <button type="submit" class="btn btn-primary" name="submit">Update Category</button>
+                  <button type="submit" class="btn btn-primary" name="submit">Update Item</button>
                 </div>
               </div>
 

@@ -38,9 +38,10 @@ class MenuController {
         }else{return false;}
     }
 
-    public function update($id,$ctegory_name){
+    public function update($id, $name, $cat_name, $description, $price,$available,$image){
+        
 
-        $item=$this->item->update($id,$ctegory_name);
+        $item=$this->item->update($id, $name, $cat_name, $description, $price,$available,$image);
         if(!$item){
             echo "error";
         }
