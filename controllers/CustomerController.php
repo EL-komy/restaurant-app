@@ -49,4 +49,64 @@ class CustomerController {
         return $user;
     }
 
+    public function selectAll(){
+       
+        $user = $this->user->selectAll();
+        return $user;
+    }
+
+    public function delete($id){       
+         $this->user->delete($id);
+    }
+    public function getUserByEmail($email) {
+        $sql = "SELECT user_name, email, addresss, phone FROM users WHERE email = :email";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':email' => $email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function updateUser($name, $email, $password, $address, $phone,$photo) {
+        if (!empty($password)) {
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+            $sql = "UPDATE users SET user_name = :name, passwordd = :password, addresss = :address, phone = :phone , profile_picture = :photo  
+            WHERE email = :email";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([
+                ':name' => $name,
+                ':email' => $email,
+                ':password' => $hashed_password,
+                ':address' => $address,
+                ':phone' => $phone,
+                ':photo' => $photo
+            ]);
+        } else {
+            $sql = "UPDATE users SET user_name = :name, addresss = :address, phone = :phone , profile_picture = :photo
+             WHERE email = :email";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([
+                ':name' => $name,
+                ':email' => $email,
+                ':address' => $address,
+                ':phone' => $phone,
+                ':photo' => $photo
+            ]);
+        }
+    }
+    // public function select(){
+    //     $user = $this->user->select($table,$email);
+    //     if($user){
+    //         // session_ start();
+
+    //     }
+    // }
+    // public function selectAll(){
+       
+    //     $user = $this->user->selectAll();
+    //     return $user;
+    // }
+
+    // public function delete($id){       
+    //      $this->user->delete($id);
+    // }
+
 }

@@ -7,7 +7,7 @@ $email=$_SESSION['email'];
 if($email){
   $controller= new CustomerController();
     
-  $user=$controller->select($email);
+  $user=$controller->getUserByEmail($email);
   
 
 //   var_dump($user);
@@ -111,13 +111,31 @@ if($email){
             </div>
         </div>
     </nav>
-    <img src="logo2.jpg" alt="Profile Picture" class="profile-picture">
+    <img src="<?php echo '../../public/images/' . ($user['profile_picture'] ? $user['profile_picture'] : 'user.png'); ?>" alt="Proooile Picture" class="profile-picture">
     <h2><?=$user['user_name']?></h2>
     
     <div class="profile-info">
+<<<<<<< HEAD
+
+        <div><strong>Name:</strong> <?=$user['user_name']?></div>
+=======
+>>>>>>> dashboard-users
+        <div><strong>Email:</strong> <?=$user['email']?></div>
+        <div><strong>Address:</strong> <?=$user['addresss']?></div>
+        <div><strong>Name:</strong> <?=$user['name']?></div>
+        <div><strong>Email:</strong> <?=$user['email']?></div>
+        <div><strong>Address:</strong> <?=$user['address']?></div>
+
         <div><strong>Name:</strong> <?=$user['user_name']?></div>
         <div><strong>Email:</strong> <?=$user['email']?></div>
         <div><strong>Address:</strong> <?=$user['addresss']?></div>
+>>>>>>> 25d0ded (userProfile)
+=======
+>>>>>>> d4ec197 (userProfile)
+=======
+        <div><strong>Email:</strong> <?=$user['email']?></div>
+        <div><strong>Address:</strong> <?=$user['addresss']?></div>
+>>>>>>> a0a02c7 (users page in dashboard)
         <div><strong>Phone:</strong> <?=$user['phone']?></div>
     </div>
     
