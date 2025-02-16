@@ -36,6 +36,14 @@ CREATE TABLE item_options (
     FOREIGN KEY (item_id) REFERENCES menu_items(id) ON DELETE CASCADE
 );
 
+CREATE TABLE offers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    item_id INT NOT NULL,
+    new_price FLOAT NOT NULL,
+    expiry_at TIMESTAMP ,
+    FOREIGN KEY (item_id) REFERENCES menu_items(id) ON DELETE CASCADE
+);
+
 CREATE TABLE orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
