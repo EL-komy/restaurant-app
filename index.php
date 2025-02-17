@@ -1,4 +1,4 @@
-<?php
+/<?php
     session_start();
     $userId = isset($_SESSION['email']) ? $_SESSION['email'] : null;
     // var_dump($userId) ;
@@ -27,419 +27,7 @@
             }
         }
     </script>
-    <style>
-        body {
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-
-        .navbar {
-            background-color: #ffffff;
-            border-bottom: 1px solid #ddd;
-            padding: 8px 20px;
-        }
-
-        .navbar-brand img {
-            width: 80px;
-            height: 80px;
-        }
-
-        .navbar-nav .nav-item .btn {
-            color: #808080;
-            padding: 6px 14px;
-            font-size: 14px;
-            border-radius: 20px;
-            margin-right: 12px;
-            border: 2px solid transparent;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-        }
-
-        .navbar-nav .nav-item .btn:hover {
-            background-color: #f1f1f1;
-            color: #212121;
-            border-color: #f9001a;
-        }
-
-        .dropdown-menu {
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            min-width: 180px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .dropdown-item {
-            padding: 6px 14px;
-            font-size: 14px;
-            cursor: pointer;
-            color: #808080;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .dropdown-item:hover {
-            background-color: #f1f1f1;
-            color: #212121;
-        }
-
-        .lang-btn {
-            color: #808080;
-            font-size: 14px;
-            padding: 6px 14px;
-            background-color: transparent;
-            border: 2px solid #f9001a;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: color 0.3s, background-color 0.3s;
-        }
-
-        .lang-btn:hover {
-            color: #ffffff;
-            background-color: #f9001a;
-        }
-
-        .cart-icon {
-            font-size: 20px;
-            color: #f9001a;
-            margin-right: 12px;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .cart-icon:hover {
-            color: #c70012;
-        }
-
-        .login-btn {
-            background-color: #f9001a;
-            color: #ffffff;
-            border: solid 2px #ffffff;
-            margin: auto 12px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 14px;
-            transition: color 0.3s, background-color 0.3s;
-        }
-
-        .login-btn:hover {
-            color: #f9001a;
-            border: 2px solid #f9001a;
-            background-color: transparent;
-        }
-
-        .navbar-nav .nav-item .btn:focus,
-        .navbar-nav .nav-item .btn:active {
-            color: #f9001a;
-            border-color: #f9001a;
-        }
-
-        .title {
-            display: inline;
-        }
-
-        .sub-titel {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            gap: 70%;
-        }
-
-        .ViewAll {
-            text-decoration: none;
-            color: #007aff;
-
-            font-weight: lighter;
-        }
-
-        @media (max-width: 767px) {
-            .navbar-nav .nav-item .btn {
-                font-size: 13px;
-                padding: 6px 12px;
-            }
-
-            .lang-btn,
-            .login-btn {
-                font-size: 13px;
-                padding: 6px 12px;
-            }
-
-            .cart-icon {
-                font-size: 18px;
-            }
-        }
-
-        .carousel-item {
-            max-height: 70vh !important;
-        }
-
-        .carousel-caption {
-            position: absolute;
-            bottom: 5%;
-            z-index: 2;
-        }
-
-        .circle-container {
-            display: flex;
-            justify-content: center;
-            gap: 5vw;
-            margin: 40px 0;
-        }
-
-        .circle {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            transition: transform 0.3s ease;
-        }
-
-        .circle:hover {
-            transform: scale(1.2);
-        }
-
-        .circle-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .circle:hover .overlay {
-            opacity: 1;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 40px 0;
-            font-size: 14px;
-        }
-
-        footer h5 {
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-
-        footer p {
-            margin-bottom: 10px;
-        }
-
-        .footer-section {
-            margin-bottom: 30px;
-        }
-
-        .footer-section a {
-            color: #f9001a;
-            text-decoration: none;
-        }
-
-        .footer-section a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-section .text-center {
-            margin-top: 30px;
-        }
-
-        .card {
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .card img {
-            width: 100%;
-            height: auto;
-        }
-
-        .card-body {
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-
-        .card-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #f9001a;
-        }
-
-        .card-text {
-            font-size: 14px;
-            color: #333;
-        }
-
-        @media (max-width: 767px) {
-            .card {
-                margin-bottom: 10px;
-            }
-
-            .footer-section {
-                margin-bottom: 20px;
-            }
-
-            .navbar-nav .nav-item .btn {
-                font-size: 13px;
-            }
-
-            .carousel-item img {
-                height: 50vh !important;
-                object-fit: cover;
-            }
-
-            .circle-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .circle {
-                width: 50%;
-                height: 35vw;
-                margin: 0 auto;
-            }
-        }
-
-        .card-img-top {
-            height: 20vw !important;
-        }
-
-        .customize-container {
-            border-radius: 12px;
-            padding: 25px;
-            background-color: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .sidebar {
-            background-color: #ffffff;
-            border-right: 2px solid #ddd;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .sidebar a {
-            text-decoration: none;
-            font-size: 1rem;
-            color: #6c757d;
-            display: block;
-            padding: 12px 10px;
-            transition: all 0.3s ease;
-            border-radius: 5px;
-        }
-
-        .sidebar a:hover,
-        .sidebar a.active {
-            background-color: #d62a2a;
-            color: white;
-            font-weight: bold;
-        }
-
-        .form-check {
-            background-color: #f8f9fa;
-            padding: 10px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        .form-check:hover {
-            background-color: #e9ecef;
-        }
-
-        .form-check-input:checked+.form-check-label {
-            font-weight: bold;
-            color: #d62a2a;
-        }
-
-        .selected-item {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-            padding: 20px;
-            text-align: center;
-        }
-
-        .selected-item img {
-            border-radius: 10px;
-            max-width: 80%;
-        }
-
-        .btn-add-to-cart {
-            background-color: #d62a2a;
-            color: white;
-            border: none;
-            font-size: 18px;
-            padding: 12px;
-            border-radius: 8px;
-            transition: 0.3s ease;
-        }
-
-        .btn-add-to-cart:hover {
-            background-color: #b22424;
-        }
-
-        .btn-reset {
-            background-color: #6c757d;
-            color: white;
-            border-radius: 5px;
-            transition: 0.3s ease;
-        }
-
-        .btn-reset:hover {
-            background-color: #5a6268;
-        }
-
-        #photo-one {
-            height: 80px;
-            width: 120px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-
-        #tomato-img {
-            height: 50px;
-            width: 80px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-
-        .modal-dialog {
-            max-width: 1100px;
-        }
-
-        .modal-content {
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        #meal-btn {
-            display: block;
-            margin: 5px auto;
-            width: 300px;
-            border-radius: 24px;
-            height: 40px;
-            font-weight: bold;
-        }
-
-        #meal-btn:hover {
-            width: 400px;
-            height: 50px;
-            transition: 1s;
-            background-color: white;
-            color: black;
-        }
-    </style>
+    <link rel="stylesheet" href="public/css/index.css">
 </head>
 
 <body>
@@ -456,37 +44,26 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="btn btn-outline-light" href="#"> <i class="bi bi-check-lg"></i> Delivery</a>
+                        <a class="btn btn-outline-light" href="#"> <i class="bi bi-check-lg"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-outline-light" href="#">Self-Pickup</a>
+                        <a class="btn btn-outline-light" href="#">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-outline-light" href="#">Dine-In</a>
+                        <a class="btn btn-outline-light" href="#">Menu</a>
                     </li>
-                    <li class="nav-item location-select dropdown">
-                        <a class="btn btn-outline-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Choose Location
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">City 1</a></li>
-                            <li><a class="dropdown-item" href="#">City 2</a></li>
-                            <li><a class="dropdown-item" href="#">City 3</a></li>
-                            <li><a class="dropdown-item" href="#">City 4</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                   </ul>
                 <i class="bi bi-cart cart-icon"></i>
-                <button class="lang-btn" onclick="changeLanguage()">العربية</button>
+                <button class="lang-btn" >sign up</button>
                 <button class="login-btn">Log In</button>
             </div>
         </div>
     </nav>
 
     <!-- slider -->
+     <div class="container">
     <header>
-        <div id="carouselExample" class="carousel slide mt-2" data-bs-ride="carousel">
+        <div id="carouselExample" class="carousel slide mt-5" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="./public/images/12.jpg" class="d-block w-100" alt="Image 1">
@@ -499,17 +76,11 @@
                 <div class="carousel-item">
                     <img src="./public/images/2.jpg" class="d-block w-100" alt="Image 2">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Welcome to Fryco & Grill</h5>
-                        <p>Delicious fried and grilled chicken just for you!</p>
-                        <a href="#" class="btn btn-outline-light">View Menu</a>
-                    </div>
+
                 </div>
                 <div class="carousel-item">
                     <img src="./public/images/desktop_thumbnail_27e08e66-1f58-4b6a-bafa-70caadd054ec.jpg" class="d-block w-100" alt="Image 3">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Welcome to Fryco & Grill</h5>
-                        <p>Delicious fried and grilled chicken just for you!</p>
-                        <a href="#" class="btn btn-outline-light">View Menu</a>
                     </div>
                 </div>
             </div>
@@ -523,7 +94,7 @@
             </button>
         </div>
     </header>
-    <div class="sub-titel mt-4">
+    <div class="sub-titel mt-5">
         <div>
             <h5 class="title">Explore Menu </h5>
             <img src="./public/images/explore-menu-950b8776.png" alt="" width="25" style="position: relative;bottom: 1vh;">
@@ -537,9 +108,9 @@
     </div>
 
     <!-- circles -->
-    <div class="circle-container">
+    <div class="circle-container mt-5">
         <div class="circle">
-            <img src="./public/images/images.jpeg" class="circle-img" alt="Burger">
+            <img src="./public/images/burger.png" class="circle-img" alt="Burger">
             <div class="overlay">Burger</div>
         </div>
         <div class="circle">
@@ -569,16 +140,40 @@
 
     </div>
 
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <!-- Menu Card -->
+            <div class="col-md-5 mb-3">
+                <div class="card custom-card">
+                    <img src="https://b1435806.smushcdn.com/1435806/wp-content/uploads/2018/01/menu.png?lossy=1&strip=1&webp=1" class="card-img-top" alt="Menu">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">View Menu</h5>
+                        <a href="views/customer/menu.php" class="btn btn-danger btn-lg w-100">Explore</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reservation Card -->
+            <div class="col-md-5 mb-3">
+                <div class="card custom-card">
+                    <img src="https://gritsandgrids.s3.amazonaws.com/media/2017/02/Shade-Burger-YOD-studio-11.jpg" class="card-img-top" alt="Reserve">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Reserve a Table</h5>
+                        <a href="#" class="btn btn-dark btn-lg w-100">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-
-    <button id="meal-btn"
+    <!-- <button id="meal-btn"
         type="button"
         class="btn btn-primary"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal">
         check your meal
-    </button>
+    </button> -->
 
 
     <div
@@ -811,7 +406,7 @@
             </div>
         </div>
     </div>
-
+<div class="txt-con">
     <div class="text">
         <h5>EXCLUSIVE OFFERS </h5>
         <h5>FOR ONE </h5>
@@ -819,7 +414,7 @@
         <h5>SIDES & DESSERTS </h5>
     </div>
 
-
+    </div>
 
     <!-- cards -->
     <div class="container mt-5">
@@ -862,7 +457,7 @@
             </div>
         </div>
     </div>
-
+     </div>
     <!-- footer -->
     <footer class="footer">
         <div class="container">
@@ -888,9 +483,17 @@
     </footer>
 
     <script>
-        function changeLanguage() {
-            alert("تم تغيير اللغة إلى العربية");
-        }
+
+
+const items = document.querySelectorAll(".text h5");
+
+items.forEach((item, index) => {
+    setTimeout(() => {
+        item.style.opacity = "1";
+        item.style.transform = "translateY(0)";
+    }, index * 700); 
+});
+
     </script>
 </body>
 

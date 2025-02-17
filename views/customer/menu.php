@@ -10,120 +10,42 @@
     
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
+    <link rel="stylesheet" href="../../public/css/index.css">
     <style>
-        body {
-            background-color: #fff;
-            scroll-behavior: smooth;
-        }
-
-        /* Navbar Styling */
-        .navbar {
-            background-color: #701515; /* Red navbar */
-        }
-
-        .navbar-brand {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .navbar-nav .nav-link {
-            color: white;
-            font-size: 1rem;
-            transition: 0.3s;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: #ffccbc; /* Lighter red */
-        }
-
-        /* Card Styling */
-        .card {
-            border: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        
-        .card-img-top {
-            height: 200px; /* Adjust as needed */
-            object-fit: cover;
-        }
-
-        .card-body {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .card-title {
-            color: #d32f2f; /* Red color */
-            font-weight: bold;
-        }
-
-        .btn-add-cart {
-            background-color: #d32f2f;
-            color: white;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-add-cart:hover {
-            background-color: #881212;
-        }
-
-        /* Footer Styling */
-        .footer {
-            background-color: #701515;
-            color: white;
-            padding: 20px 0;
-        }
-
-        .footer a {
-            color: white;
-            margin: 0 10px;
-            font-size: 20px;
-        }
-
-        .footer a:hover {
-            color: #ffccbc;
-        }
-    </style>
+       
+     </style>
 </head>
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container " >
-            <a class="navbar-brand justify-content-start" href="#">FRYCO</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./public/images/logo2.jpg" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Menu</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Categories</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="#"> <i class="bi bi-check-lg"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="#">Menu</a>
+                    </li>
+                   </ul>
+                <i class="bi bi-cart cart-icon"></i>
+                <button class="lang-btn" >sign up</button>
+                <button class="login-btn">Log In</button>
             </div>
         </div>
     </nav>
-
+ 
     <!-- Spacing after fixed navbar -->
     <div style="margin-top: 70px;"></div>
 
