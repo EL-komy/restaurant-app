@@ -27,11 +27,12 @@ class MenuController {
     // Select all menu items
     public function select() {
         $item = $this->item->select();
-        if ($item) {
-            echo json_encode($item); // Return items as JSON
-        } else {
-            echo json_encode(["message" => "No items found"]);
-        }
+        // if ($item) {
+        //     echo json_encode($item); // Return items as JSON
+        // } else {
+        //     echo json_encode(["message" => "No items found"]);
+        // }
+        return $item;
     }
 
     // Select a single menu item

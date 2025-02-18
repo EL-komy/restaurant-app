@@ -1,18 +1,21 @@
 <?php
 require_once '../../controllers/MenuController.php';
 
+$controller= new MenuController();
+
 
 // جلب العناصر من جدول قائمة الطعام
-$sql = "SELECT name, description, price, image FROM menu_items";
-$result = $conn->query($sql);
+// $sql = "SELECT name, description, price, image FROM menu_items";
+$menuItems = $controller->select();
+
 
 // تخزين العناصر في مصفوفة لتكون جاهزة للطباعة في HTML
-$menuItems = [];
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $menuItems[] = $row;
-    }
-}
+// $menuItems = [];
+// if ($result->num_rows > 0) {
+//     while ($row = $result->fetch_assoc()) {
+//         $menuItems[] = $row;
+//     }
+// }
 
 $conn->close();
 ?>
