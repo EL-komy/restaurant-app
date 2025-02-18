@@ -52,6 +52,12 @@ class CustomerController {
             return false;
         }
     }
+
+    public function changeRole($id, $role) {
+        $this->user->updateRole($id, $role);
+    }
+
+    
     public function select($email){
        
         $user = $this->user->select($email);
