@@ -1,4 +1,4 @@
-/<?php
+<?php
     session_start();
     $userId = isset($_SESSION['email']) ? $_SESSION['email'] : null;
     // var_dump($userId) ;
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="btn btn-outline-light" href="#"> <i class="bi bi-check-lg"></i> Home</a>
+                        <a class="btn btn-outline-light" href="index.php"> <i class="bi bi-check-lg"></i> Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-outline-light" href="#">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-outline-light" href="#">Menu</a>
+                        <a class="btn btn-outline-light" href="views/customer/menu.php">Menu</a>
                     </li>
                    </ul>
                 <i class="bi bi-cart cart-icon"></i>
