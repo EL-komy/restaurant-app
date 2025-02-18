@@ -11,7 +11,7 @@ class Order
     public function insertOrder($user_id,$status,$total_price)
     {
         $insertQuery = "INSERT INTO orders (user_id,status,total_price) VALUES
-         (:user_id,:status,:total_price,:price,:image)";
+         (:user_id,:status,:total_price)";
         $stmt = $this->conn->prepare($insertQuery);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->bindParam(':status', $status);

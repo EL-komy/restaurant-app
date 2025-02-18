@@ -1,10 +1,6 @@
 <?php
-session_start();
-$error=[];
-$users = [
-    "user@example.com" => ["password" => "123456", "name" => "John Doe", "role" => "customer"],
-    "admin@example.com" => ["password" => "admin123", "name" => "Admin User", "role" => "staff"]
-];
+// session_start();
+$error = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
@@ -16,16 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (!$password) {
-        $error["password"] = "password is required";
-    }
-
-    if (isset($users[$email]) && $users[$email]["password"] === $password) {
-        $_SESSION["user_id"] = $email;
-        $_SESSION["user_name"] = $users[$email]["name"];
-        $_SESSION["user_role"] = $users[$email]["role"];
-        header("Location: ../../index.php");
-        exit();
+        $error["password"] = "Password is required";
     }
 }
-
-
+?>

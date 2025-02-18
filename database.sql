@@ -32,7 +32,7 @@ CREATE TABLE item_options (
     id INT AUTO_INCREMENT PRIMARY KEY,
     item_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
-    image TEXT,
+    im  age TEXT,
     FOREIGN KEY (item_id) REFERENCES menu_items(id) ON DELETE CASCADE
 );
 

@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($email) {
         $controller = new CustomerController();
-        $user = $controller->getUserByEmail($email);
+        $user = $controller->select($email);
     } else {
         header("Location:../shared/login.php");
     }
@@ -28,13 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insert the item into the order_details table
     $orderController->insertOrder($user['id'], 'pending', 0);
+    // var_dump($user);
     $order = $orderController->selectOneOrder($user['id']);
     $orderController->insertItem($order['id'], $item_id, 1, $item_price);
 
 
     // Redirect back to the menu or show a success message
-    header('Location: views/customer/menu.php');
-    exit();
+    // header('Location: views/customer/menu.php');
+    // exit();
 }
 
 $item = new MenuController();
