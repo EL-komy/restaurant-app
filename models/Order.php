@@ -37,6 +37,20 @@ class Order
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function totalSales() {
+        $sql = "SELECT ROUND(SUM(total_price), 2) as total_price FROM orders WHERE status = 'Delivered'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(); 
+        return $stmt->fetch(PDO::FETCH_ASSOC); 
+    }
+
+    public function totalOrder() {
+        $sql = "SELECT count(*) as orders FROM orders WHERE status = 'Delivered'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(); 
+        return $stmt->fetch(PDO::FETCH_ASSOC); 
+    }
+
     public function insertOffer($id, $price, $expiry_date)
     {
         $insertQuery = "INSERT INTO offers (item_id, new_price, expiry_at) VALUES
