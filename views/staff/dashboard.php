@@ -48,7 +48,8 @@ $activeOrders=$order->totalOrder();
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-cart"></i>
+                    
+                    <i class="bi bi-currency-dollar"></i>
                   </div>
                   <div class="ps-3">
                     <h6>$<?php echo $totalSales['total_price']; ?></h6>
@@ -83,7 +84,7 @@ $activeOrders=$order->totalOrder();
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
+                    <i class="bi bi-cart"></i>
                   </div>
                   <div class="ps-3">
                     <h6><?php echo $activeOrders['orders']; ?></h6>
