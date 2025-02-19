@@ -20,6 +20,16 @@ class MenuController {
             echo "success";
         }
     }
+
+    public function insertOffer($id, $price, $expiry_date){
+        $item=$this->item->insertOffer($id, $price, $expiry_date);
+        if(!$item){
+            echo "error";
+        }
+        else{
+            echo "success";
+        }
+    }
     public function select(){
         $item=$this->item->select();
         // var_export($item);
