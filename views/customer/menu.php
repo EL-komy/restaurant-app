@@ -3,21 +3,10 @@ require_once '../../controllers/MenuController.php';
 
 $controller= new MenuController();
 
-
-// جلب العناصر من جدول قائمة الطعام
-// $sql = "SELECT name, description, price, image FROM menu_items";
 $menuItems = $controller->select();
 
 
-// تخزين العناصر في مصفوفة لتكون جاهزة للطباعة في HTML
-// $menuItems = [];
-// if ($result->num_rows > 0) {
-//     while ($row = $result->fetch_assoc()) {
-//         $menuItems[] = $row;
-//     }
-// }
 
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +45,7 @@ $conn->close();
                 <?php foreach ($menuItems as $item): ?>
                     <div class="col-md-4">
                         <div class="card">
-                            <img src="<?= $item['image'] ?>" class="card-img-top" alt="Food" onerror="this.src='../../public/images/default-food.jpg'">
+                            <img src="<?= $item['image'] ?>" class="card-img-top" alt="Food" ">
                             <div class="card-body text-center">
                                 <h5 class="card-title"><?= $item['name'] ?></h5>
                                 <p class="text-danger fw-bold">$<?= number_format($item['price'], 2) ?></p>

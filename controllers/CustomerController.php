@@ -24,10 +24,10 @@ class CustomerController {
         }
     }
 
-    public function updateMenuItem($itemId, $newPrice) {
-        // Logic to update menu item price
-        echo "Updated menu item $itemId with new price $newPrice";
-    }
+    // public function updateMenuItem($itemId, $newPrice) {
+    //     // Logic to update menu item price
+    //     echo "Updated menu item $itemId with new price $newPrice";
+    // }
 
     public function login($email, $password) {
         $user = $this->user->login($email, $password);
