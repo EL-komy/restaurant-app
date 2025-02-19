@@ -26,15 +26,12 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
-
   <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
 
- 
   <header id="header" class="header fixed-top d-flex align-items-center">
-
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
@@ -43,17 +40,13 @@
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>
 
-    
-
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
         <li class="nav-item dropdown pe-3">
-
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
           </a>
-
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>Kevin Anderson</h6>
@@ -62,7 +55,6 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-person"></i>
@@ -72,7 +64,6 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-gear"></i>
@@ -82,7 +73,6 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
             <li>
               <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
                 <i class="bi bi-question-circle"></i>
@@ -92,25 +82,20 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
             <li>
               <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
             </li>
-
           </ul>
         </li>
-
       </ul>
     </nav>
-
   </header>
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
-
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
@@ -126,7 +111,6 @@
           <span>User</span>
         </a>
       </li>
-
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -147,10 +131,10 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#categories-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Categories</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="categories-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="category.php">
               <i class="bi bi-circle"></i><span>Add Category</span>
@@ -163,7 +147,25 @@
           </li>         
         </ul>
       </li>
-      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="addtable.php">
+              <i class="bi bi-circle"></i><span>Add Table</span>
+            </a>
+          </li>
+          <li>
+            <a href="listtables.php">
+              <i class="bi bi-circle"></i><span>List Tables</span>
+            </a>
+          </li>         
+        </ul>
+      </li>
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#Menu-items" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Menu-items</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -181,12 +183,12 @@
           </li>
         </ul>
       </li><!-- End Forms Nav -->
-     
+
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#item-options-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Item Options</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="item-options-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="addoption.php">
               <i class="bi bi-circle"></i><span>Add option</span>
@@ -209,5 +211,4 @@
         </a>
       </li><!-- End Profile Page Nav --> 
     </ul>
-
   </aside><!-- End Sidebar-->
