@@ -26,5 +26,27 @@ class OptionsController {
         return $option;
 
     }
+    public function delete($id){
+        $item=$this->options->delete($id);
+        if($item){
+            return true;
+        }else{return false;}
+    }
+    public function update($id, $item_id, $name, $image = null)
+{
+    // Call the update method for the item_options table
+    $itemOption = $this->options->update($id, $item_id, $name, $image);
+
+    // Check if the update was successful
+    if (!$itemOption) {
+        echo "error";
+    } else {
+        echo "success";
+    }
+}
+public function selectone($id){
+    $item=$this->options->selectone($id);
+    return $item;
+}
 }
 ?>

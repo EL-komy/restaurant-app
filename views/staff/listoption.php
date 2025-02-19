@@ -3,6 +3,11 @@
 require_once "shared/navbar.php";
 require_once '../../controllers/MenuController.php';
 require_once '../../controllers/OptionsController.php';
+if(isset($_GET['delete'])){
+ $id=$_GET['delete'];
+ $delete=new OptionsController();
+ $delete->delete($id);
+}
 $item=new optionsController();
 $cat=$item->select();
 ?>
@@ -44,13 +49,13 @@ $cat=$item->select();
             <tbody>
                 <?php foreach($cat as $item): ?>
                 <tr>
-                    <td><?= $item['id']?></td>
-                    <td><?= $item['name']?></td> 
-                    <td><?= $item['item_id']?></td>
-                    <td><img src="" alt="itemimage"></td>
+                    <td><?= $item['option_id']?></td>
+                    <td><?= $item['option_name']?></td> 
+                    <td><?= $item['menu_item_name']?></td>
+                    <td> <img src="../../public/images/<?= $item['option_image']?>" width="50px" height="50px" alt="Drinks"></td>
                     <td>
-                        <a href="?delete=<?=$item['id'];?>" class="btn btn-danger">Delete</a>
-                        <a href="editcategory.php?edit=<?=$item['id'];?>" class="btn btn-warning">Edit</a>
+                        <a href="?delete=<?=$item['option_id'];?>" class="btn btn-danger">Delete</a>
+                        <a href="editoption.php?edit=<?=$item['option_id'];?>" class="btn btn-warning">Edit</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
