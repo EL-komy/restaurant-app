@@ -184,6 +184,24 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#inventory-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-journal-text"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="inventory-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="addinventory.php">
+                        <i class="bi bi-circle"></i><span>Add Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="listinventory.php">
+                        <i class="bi bi-circle"></i><span>List Inventory</span>
+                    </a>
+                </li>         
+            </ul>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#Menu-items" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Menu-items</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
