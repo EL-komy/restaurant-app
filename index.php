@@ -479,7 +479,7 @@
                 </ul>
                 <i class="bi bi-cart cart-icon"></i>
                 <button class="lang-btn" onclick="changeLanguage()">العربية</button>
-                <?php if (isset($_SESSION['user_id'])): ?>
+                <?php if (isset($_SESSION['email'])): ?>
                 <a href="config\logout.php" class="btn btn-danger">Log Out</a>
             <?php else: ?>
                 <a href=".\views\shared\login.php" class="btn btn-danger">Log In</a>
