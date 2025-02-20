@@ -24,17 +24,23 @@ class MenuController {
         }
     }
 
-    // Select all menu items
     public function select() {
-        $item = $this->item->select();
-        // if ($item) {
-        //     echo json_encode($item); // Return items as JSON
-        // } else {
-        //     echo json_encode(["message" => "No items found"]);
-        // }
-        return $item;
+        // تعديل الاستعلام لعرض الأقسام مع العناصر
+        $selectQuery = "SELECT c.ctegory_name as category_name, m.id as item_id, m.name as item_name, m.description, m.price, m.image
+                        FROM categories c
+                        JOIN menu_items m ON c.id = m.category_id";
+        $stmt = $this->db->prepare($selectQuery); // تأكد من أنك تستخدم $this->db هنا وليس $this->conn
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        // تنظيم العناصر حسب الأقسام
+        $menu = [];
+        foreach ($items as $item) {
+            $menu[$item['category_name']][] = $item;
+        }
+        return $menu;
     }
-
+       
     // Select a single menu item
     public function selectone($id) {
         $item = $this->item->selectone($id);

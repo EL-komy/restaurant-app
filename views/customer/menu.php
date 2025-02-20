@@ -1,12 +1,41 @@
 <?php
+session_start(); // بدء الجلسة لتمكين تخزين السلة
 require_once '../../controllers/MenuController.php';
 
-$controller= new MenuController();
-
+$controller = new MenuController();
 $menuItems = $controller->select();
 
-
-
+// إضافة المنتج إلى السلة عند الضغط
+if (isset($_GET['add_to_cart'])) {
+    $itemId = $_GET['add_to_cart'];
+    
+    // البحث عن المنتج باستخدام id
+    foreach ($menuItems as $categoryName => $items) {
+        foreach ($items as $item) {
+            if ($item['item_id'] == $itemId) {
+                // إذا كان المنتج موجود في السلة، نقوم بزيادة الكمية
+                if (isset($_SESSION['cart'][$itemId])) {
+                    $_SESSION['cart'][$itemId]['quantity']++;
+                } else {
+                    // إضافة المنتج إلى السلة
+                    $_SESSION['cart'][$itemId] = [
+                        'id' => $item['item_id'],
+                        'name' => $item['item_name'],
+                        'price' => $item['price'],
+                        'image' => $item['image'],
+                        'description' => $item['description'],
+                        'quantity' => 1
+                    ];
+                }
+                break 2;
+            }
+        }
+    }
+    
+    // إعادة توجيه المستخدم إلى صفحة السلة بعد إضافة المنتج
+    header("Location: cart.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +46,7 @@ $menuItems = $controller->select();
     <title>Restaurant Menu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../public/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -25,12 +55,17 @@ $menuItems = $controller->select();
             <a class="navbar-brand" href="#">
                 <img src="../../public/images/logo2.jpg" alt="Logo">
             </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light" href="../../index.php">Home</a>
-                    </li>
+                    <li class="nav-item"><a class="btn btn-outline-light" href="../../index.php">Home</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-light" href="#">Profile</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-light" href="#">Menu</a></li>
                 </ul>
+                <a href="cart.php"> <i class="bi bi-cart cart-icon"></i><a>
                 <button class="lang-btn">Sign Up</button>
                 <button class="login-btn">Log In</button>
             </div>
@@ -42,18 +77,22 @@ $menuItems = $controller->select();
         <h2 class="text-center text-danger fw-bold">Restaurant Menu</h2>
         <div class="row g-4 mt-4" id="menu-items">
             <?php if (count($menuItems) > 0): ?>
-                <?php foreach ($menuItems as $item): ?>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="<?= $item['image'] ?>" class="card-img-top" alt="Food" ">
-                            <div class="card-body text-center">
-                                <h5 class="card-title"><?= $item['name'] ?></h5>
-                                <p class="text-danger fw-bold">$<?= number_format($item['price'], 2) ?></p>
-                                <p class="card-text"><?= $item['description'] ?></p>
-                                <button class="btn btn-danger w-100">Add to Cart</button>
+                <?php foreach ($menuItems as $categoryName => $items): ?>
+                    <h3 class="text-center text-primary"><?= $categoryName ?></h3>
+                    <?php foreach ($items as $item): ?>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="<?= !empty($item['image']) ? '../../public/images/' . $item['image'] : 'default.jpg' ?>" class="card-img-top" alt="Food">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title"><?= $item['item_name'] ?></h5>
+                                    <p class="text-danger fw-bold">$<?= number_format($item['price'], 2) ?></p>
+                                    <p class="card-text"><?= $item['description'] ?></p>
+                                    <!-- هنا نقوم بإضافة الرابط لزر "Add to Cart" والذي يرسل مع الـ GET id المنتج -->
+                                    <a href="menu.php?add_to_cart=<?= $item['item_id'] ?>" class="btn btn-danger w-100">Add to Cart</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
             <?php else: ?>
                 <p class="text-center text-muted">No menu items available.</p>
