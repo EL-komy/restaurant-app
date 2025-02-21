@@ -1,3 +1,22 @@
+<?php 
+require_once '../../controllers/NotificationController.php';
+
+// Create an instance of NotificationController
+$notificationController = new NotificationController();
+
+// Fetch all notifications
+$notifications = $notificationController->selectAll();
+$notificationCount = count($notifications); // Count the number of notifications
+
+// Assuming you have a way to get the current user's ID
+$currentUserId = 1; // Replace with actual user ID
+$unreadCount = $notificationController->getUnreadCount($currentUserId); // Get unread notifications count
+
+// Mark notifications as read when viewed
+foreach ($notifications as $notification) {
+    $notificationController->markNotificationAsRead($notification['id']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +49,7 @@
 </head>
 
 <body>
+
 
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
@@ -90,7 +110,35 @@
             </li>
           </ul>
         </li>
-      </ul>
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number"><?= $unreadCount ?></span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              You have <?= $unreadCount ?> new notifications
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <?php foreach ($notifications as $notification): ?>
+              <li class="notification-item">
+                <i class="bi bi-exclamation-circle text-warning"></i>
+                <div>
+                  <h4><?= htmlspecialchars($notification['message']) ?></h4>
+                  <p><?= htmlspecialchars($notification['created_at']) ?></p>
+                </div>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+            <?php endforeach; ?>
+          </ul>
     </nav>
   </header>
 
@@ -109,7 +157,14 @@
                 <i class="ri-account-pin-circle-fill"></i>
                 <span>User</span>
             </a>
-        </li>
+          </li>
+          <li>
+            <a href="users.php">
+              <i class="bi bi-circle"></i><span>List User</span>
+            </a>
+          </li>
+        </ul>
+      </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -128,6 +183,50 @@
                 </li>         
             </ul>
         </li>
+          </li>
+          <li>
+            <a href="listcategory.php">
+              <i class="bi bi-circle"></i><span>List Categories</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#Menu-items" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Menu-items</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="Menu-items" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="additem.php">
+              <i class="bi bi-circle"></i><span>Add Item</span>
+            </a>
+          </li>
+          <li>
+            <a href="listitems.php">
+              <i class="bi bi-circle"></i><span>List Items</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Item Options</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="addoption.php">
+              <i class="bi bi-circle"></i><span>Add option</span>
+            </a>
+          </li>
+          <li>
+            <a href="listoption.php">
+              <i class="bi bi-circle"></i><span>List Options</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#categories-nav" data-bs-toggle="collapse" href="#">
@@ -245,5 +344,11 @@
                 <span>Profile</span>
             </a>
         </li><!-- End Profile Page Nav --> 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
     </ul>
 </aside><!-- End Sidebar-->
