@@ -39,7 +39,7 @@ class MenuController {
         return $item;
     }
 
-    public function select() {
+    public function selectcat() {
         // تعديل الاستعلام لعرض الأقسام مع العناصر
         $selectQuery = "SELECT c.ctegory_name as category_name, m.id as item_id, m.name as item_name, m.description, m.price, m.image
                         FROM categories c
