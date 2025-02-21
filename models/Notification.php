@@ -32,11 +32,11 @@ class Notification
     }
     
 
-    public function selectAll()
+    public function selectAll($id)
     {
-        $query = "SELECT * FROM notifications";
+        $query = "SELECT * FROM notifications WHERE user_id = :user_id ";
         $stmt = $this->conn->prepare($query);
-        // $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':user_id', $id);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -21,8 +21,8 @@ class NotificationController {
         }
     }
 
-    public function selectAll() {
-        $notifications = $this->item->selectAll();
+    public function selectAll($id) {
+        $notifications = $this->item->selectAll($id);
         return $notifications; // Return the notifications for further processing
     }
 

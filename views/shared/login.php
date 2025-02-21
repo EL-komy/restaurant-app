@@ -85,6 +85,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($error)) {
                 <?php endif; ?>
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
+            <div class="text-center mt-3">
+                <a href="signup.php" class="btn btn-secondary w-100">Create an Account</a>
+            </div>
         </div>
         <div class="image-container"></div>
     </div>
