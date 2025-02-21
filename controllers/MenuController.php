@@ -24,6 +24,21 @@ class MenuController {
         }
     }
 
+    public function insertOffer($id, $price, $expiry_date){
+        $item=$this->item->insertOffer($id, $price, $expiry_date);
+        if(!$item){
+            echo "error";
+        }
+        else{
+            echo "success";
+        }
+    }
+    public function select(){
+        $item=$this->item->select();
+        // var_export($item);
+        return $item;
+    }
+
     public function select() {
         // تعديل الاستعلام لعرض الأقسام مع العناصر
         $selectQuery = "SELECT c.ctegory_name as category_name, m.id as item_id, m.name as item_name, m.description, m.price, m.image
