@@ -115,11 +115,8 @@ if($email){
     <h2><?=$user['user_name']?></h2>
     
     <div class="profile-info">
-<<<<<<< HEAD
 
         <div><strong>Name:</strong> <?=$user['user_name']?></div>
-=======
->>>>>>> dashboard-users
         <div><strong>Email:</strong> <?=$user['email']?></div>
         <div><strong>Address:</strong> <?=$user['addresss']?></div>
         <div><strong>Name:</strong> <?=$user['name']?></div>
