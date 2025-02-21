@@ -1,21 +1,32 @@
-<?php 
+<?php
+session_start();
 require_once '../../controllers/NotificationController.php';
+require_once "../../controllers/CustomerController.php";
 
-// Create an instance of NotificationController
+$email = $_SESSION['email'];
+
+if ($email) {
+  $controller = new CustomerController();
+  $user = $controller->select($email);
+} else {
+  header("Location:../shared/login.php");
+}
+
 $notificationController = new NotificationController();
 
-// Fetch all notifications
-$notifications = $notificationController->selectAll();
+$notifications = $notificationController->selectAll($user['id']);
 $notificationCount = count($notifications); // Count the number of notifications
 
-// Assuming you have a way to get the current user's ID
-$currentUserId = 1; // Replace with actual user ID
-$unreadCount = $notificationController->getUnreadCount($currentUserId); // Get unread notifications count
+$unreadCount = $notificationController->getUnreadCount($user['id']); // Get unread notifications count
 
-// Mark notifications as read when viewed
-foreach ($notifications as $notification) {
-    $notificationController->markNotificationAsRead($notification['id']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' &&  isset($_POST['noti'])  && isset($_POST['notification_id'])) {
+    $notificationId = $_POST['notification_id'];
+    $notificationController->markNotificationAsRead($notificationId);
+    // Fetch notifications again to see the updated state
+    $notifications = $notificationController->selectAll($user['id']);
+    $unreadCount = $notificationController->getUnreadCount($user['id']);
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -133,6 +144,14 @@ foreach ($notifications as $notification) {
                   <h4><?= htmlspecialchars($notification['message']) ?></h4>
                   <p><?= htmlspecialchars($notification['created_at']) ?></p>
                 </div>
+                <?php if ($notification['is_read']): // Check if the notification is read ?>
+                  <span class="text-muted">Read</span>
+                <?php else: ?>
+                  <form method="POST" action="">
+                    <input type="hidden" name="notification_id" value="<?= $notification['id'] ?>">
+                    <button name="noti" type="submit" class="btn btn-link">Mark as read</button>
+                  </form>
+                <?php endif; ?>
               </li>
               <li>
                 <hr class="dropdown-divider">
