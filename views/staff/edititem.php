@@ -12,7 +12,6 @@ if (isset($_GET['edit'])) {
   $cate = new CategoryController();
   $all = $cate->select();
 
-
   $name = $cat['name'];
   $cat_name = $cat['ctegory_name'];
   $description = $cat['description'];
