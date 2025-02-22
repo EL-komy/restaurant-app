@@ -41,7 +41,7 @@ class MenuController {
 
     public function selectcat() {
         // تعديل الاستعلام لعرض الأقسام مع العناصر
-        $selectQuery = "SELECT c.ctegory_name as category_name, m.id as item_id, m.name as item_name, m.description, m.price, m.image
+        $selectQuery = "SELECT c.ctegory_name as category_name, m.id as item_id, m.name  as item_name, m.description, m.price, m.image ,m.available as available
                         FROM categories c
                         JOIN menu_items m ON c.id = m.category_id";
         $stmt = $this->db->prepare($selectQuery); // تأكد من أنك تستخدم $this->db هنا وليس $this->conn

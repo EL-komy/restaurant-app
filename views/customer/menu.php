@@ -24,6 +24,7 @@ if (isset($_GET['add_to_cart'])) {
                         'price' => $item['price'],
                         'image' => $item['image'],
                         'description' => $item['description'],
+                        
                         'quantity' => 1
                     ];
                 }
@@ -90,7 +91,11 @@ if (isset($_GET['add_to_cart'])) {
                                     <p class="text-danger fw-bold">$<?= number_format($item['price'], 2) ?></p>
                                     <p class="card-text"><?= $item['description'] ?></p>
                                     <!-- هنا نقوم بإضافة الرابط لزر "Add to Cart" والذي يرسل مع الـ GET id المنتج -->
-                                    <a href="menu.php?add_to_cart=<?= $item['item_id'] ?>" class="btn btn-danger w-100">Add to Cart</a>
+                                    <?php if ($item['available'] === 'yes'): ?>
+                                        <a href="menu.php?add_to_cart=<?= $item['item_id'] ?>" class="btn btn-danger w-100">Add to Cart</a>
+                                    <?php else: ?>
+                                        <button class="btn btn-secondary w-100" disabled>Out of Stock</button>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
