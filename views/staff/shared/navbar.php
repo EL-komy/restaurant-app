@@ -62,6 +62,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&  isset($_POST['noti'])  && isset($_
 <body>
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main-dashboard
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
@@ -70,6 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&  isset($_POST['noti'])  && isset($_
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>
+
+
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -158,6 +164,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&  isset($_POST['noti'])  && isset($_
               </li>
             <?php endforeach; ?>
           </ul>
+        </li>
+      </ul>
     </nav>
   </header>
 
@@ -247,6 +255,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&  isset($_POST['noti'])  && isset($_
         </ul>
       </li><!-- End Forms Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Categories</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="category.php">
+              <i class="bi bi-circle"></i><span>Add Category</span>
+            </a>
+          </li>
+          <li>
+            <a href="listcategory.php">
+              <i class="bi bi-circle"></i><span>List Categories</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#Menu-items" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Menu-items</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="Menu-items" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="additem.php">
+              <i class="bi bi-circle"></i><span>Add Item</span>
+            </a>
+          </li>
+          <li>
+            <a href="listitems.php">
+              <i class="bi bi-circle"></i><span>List Items</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Item Options</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="addoption.php">
+              <i class="bi bi-circle"></i><span>Add option</span>
+            </a>
+          </li>
+          <li>
+            <a href="listoption.php">
+              <i class="bi bi-circle"></i><span>List Options</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#categories-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Categories</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -357,6 +418,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&  isset($_POST['noti'])  && isset($_
 
         <li class="nav-heading">Pages</li>
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="users-profile.html">
                 <i class="bi bi-person"></i>
