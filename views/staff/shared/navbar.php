@@ -165,7 +165,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&  isset($_POST['noti'])  && isset($_
       </ul>
     </nav>
   </header>
-
   <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -181,130 +180,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&  isset($_POST['noti'])  && isset($_
                 <i class="ri-account-pin-circle-fill"></i>
                 <span>User</span>
             </a>
-          </li>
-          <li>
-            <a href="users.php">
-              <i class="bi bi-circle"></i><span>List User</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>User</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="adduser.php">
-                        <i class="bi bi-circle"></i><span>Add User</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="users.php">
-                        <i class="bi bi-circle"></i><span>List User</span>
-                    </a>
-                </li>         
-            </ul>
         </li>
-          </li>
-          <li>
-            <a href="listcategory.php">
-              <i class="bi bi-circle"></i><span>List Categories</span>
-            </a>
-          </li>
-        </ul>
-      </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#Menu-items" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Menu-items</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="Menu-items" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="additem.php">
-              <i class="bi bi-circle"></i><span>Add Item</span>
-            </a>
-          </li>
-          <li>
-            <a href="listitems.php">
-              <i class="bi bi-circle"></i><span>List Items</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Forms Nav -->
+   
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Item Options</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="addoption.php">
-              <i class="bi bi-circle"></i><span>Add option</span>
-            </a>
-          </li>
-          <li>
-            <a href="listoption.php">
-              <i class="bi bi-circle"></i><span>List Options</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Forms Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Categories</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="category.php">
-              <i class="bi bi-circle"></i><span>Add Category</span>
-            </a>
-          </li>
-          <li>
-            <a href="listcategory.php">
-              <i class="bi bi-circle"></i><span>List Categories</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#Menu-items" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Menu-items</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="Menu-items" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="additem.php">
-              <i class="bi bi-circle"></i><span>Add Item</span>
-            </a>
-          </li>
-          <li>
-            <a href="listitems.php">
-              <i class="bi bi-circle"></i><span>List Items</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Forms Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Item Options</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="addoption.php">
-              <i class="bi bi-circle"></i><span>Add option</span>
-            </a>
-          </li>
-          <li>
-            <a href="listoption.php">
-              <i class="bi bi-circle"></i><span>List Options</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Forms Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#categories-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Categories</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -415,23 +294,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&  isset($_POST['noti'])  && isset($_
 
         <li class="nav-heading">Pages</li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="users-profile.html">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>
         </li><!-- End Profile Page Nav --> 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
     </ul>
 </aside><!-- End Sidebar-->
