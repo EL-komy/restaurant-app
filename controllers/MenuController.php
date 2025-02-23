@@ -24,23 +24,22 @@ class MenuController {
         }
     }
 
-    public function select() {
-        // تعديل الاستعلام لعرض الأقسام مع العناصر
-        $selectQuery = "SELECT c.ctegory_name as category_name, m.id as item_id, m.name as item_name, m.description, m.price, m.image
-                        FROM categories c
-                        JOIN menu_items m ON c.id = m.category_id";
-        $stmt = $this->db->prepare($selectQuery); // تأكد من أنك تستخدم $this->db هنا وليس $this->conn
-        $stmt->execute();
-        $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        // تنظيم العناصر حسب الأقسام
-        $menu = [];
-        foreach ($items as $item) {
-            $menu[$item['category_name']][] = $item;
+    public function insertOffer($id, $price, $expiry_date){
+        $item=$this->item->insertOffer($id, $price, $expiry_date);
+        if(!$item){
+            echo "error";
         }
-        return $menu;
+        else{
+            echo "success";
+        }
     }
-       
+    public function select(){
+        $item=$this->item->select();
+        // var_export($item);
+        return $item;
+    }
+
+      
     // Select a single menu item
     public function selectone($id) {
         $item = $this->item->selectone($id);
@@ -62,6 +61,40 @@ class MenuController {
             echo json_encode(["message" => "Error deleting item"]);
         }
     }
+    
+    public function selectcategory() {
+        // استعلام لاستخراج كل الفئات مع العناصر
+        $selectQuery = "SELECT c.ctegory_name as category_name, c.id as category_id, m.id as item_id, m.name as item_name, m.description, m.price, m.image
+                        FROM categories c
+                        LEFT JOIN menu_items m ON c.id = m.category_id"; // استخدام LEFT JOIN لعرض الفئات الفارغة
+        $stmt = $this->db->prepare($selectQuery);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        // تنظيم العناصر حسب الفئات
+        $menu = [];
+        foreach ($items as $item) {
+            $menu[$item['category_name']][] = $item;
+        }
+    
+        return $menu;
+    }
+    
+        //OFFER
+
+    public function selectOffers() {
+        // Get only items that have an offer
+        $selectQuery = "SELECT o.id, o.item_id, o.new_price, o.expiry_at, m.name AS item_name, m.description, m.price, m.image
+                        FROM offers o
+                        JOIN menu_items m ON o.item_id = m.id";
+        $stmt = $this->db->prepare($selectQuery);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    
+        
+    
 
     // Update a menu item
     public function update($id, $name, $cat_name, $description, $price, $available, $image) {

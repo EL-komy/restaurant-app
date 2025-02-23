@@ -23,6 +23,28 @@ class Menu
         return $stmt->execute();
     }
 
+    public function insertOffer($id, $price, $expiry_date)
+    {
+        $insertQuery = "INSERT INTO offers (item_id, new_price, expiry_at) VALUES
+         (:id, :price, :expiry_date)";
+        $stmt = $this->conn->prepare($insertQuery);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':price', $price);
+        $stmt->bindParam(':expiry_date', $expiry_date);
+        return $stmt->execute();
+    }
+    // public function select(){
+    //     $selectQuery="SELECT * FROM menu_items";
+    //     $stmt = $this->conn->prepare($selectQuery);
+    //     $stmt->execute();  // FIXED TYPO HERE
+    //     $item = $stmt->fetchAll(PDO::FETCH_ASSOC);  // FIX FETCH METHOD
+    //     if($item){
+    //         return $item;
+    //     }else{
+    //         echo "error";
+    //     }
+    // }
+
     // Select all menu items
     public function select()
     {

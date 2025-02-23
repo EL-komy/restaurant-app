@@ -32,7 +32,15 @@ CREATE TABLE item_options (
     id INT AUTO_INCREMENT PRIMARY KEY,
     item_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
-    image TEXT,
+    im  age TEXT,
+    FOREIGN KEY (item_id) REFERENCES menu_items(id) ON DELETE CASCADE
+);
+
+CREATE TABLE offers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    item_id INT NOT NULL,
+    new_price FLOAT NOT NULL,
+    expiry_at TIMESTAMP ,
     FOREIGN KEY (item_id) REFERENCES menu_items(id) ON DELETE CASCADE
 );
 
@@ -62,7 +70,7 @@ CREATE TABLE order_details (
     price DECIMAL(10,2) NOT NULL CHECK (price >= 0),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
-    FOREIGN KEY (item_id) REFERENCES menu_items(id) ON DELETE CASCADE
+    FOREIGN KEY, (item_id) REFERENCES menu_items(id) ON DELETE CASCADE
 );
 
 CREATE TABLE reports (
@@ -228,3 +236,7 @@ INSERT INTO `payments` (order_id, payment_method, amount, status) VALUES
 
 
 
+//offers
+
+INSERT INTO offers (item_id, new_price, expiry_at) 
+VALUES (2, 5.99, '2025-03-31 23:59:59');

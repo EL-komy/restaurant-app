@@ -24,23 +24,32 @@ class CustomerController {
         }
     }
 
-    // public function updateMenuItem($itemId, $newPrice) {
-    //     // Logic to update menu item price
-    //     echo "Updated menu item $itemId with new price $newPrice";
-    // }
+    public function logout() {
+        session_start();
+        session_unset();
+        session_destroy();
+        header("Location: ../../pages/login.php");
+        exit();
+    }
+    
+
+    public function updateMenuItem($itemId, $newPrice) {
+        // Logic to update menu item price
+        echo "Updated menu item $itemId with new price $newPrice";
+    }
 
     public function login($email, $password) {
         $user = $this->user->login($email, $password);
         if ($user) {
             session_start();
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = $user['user_name'];
-            $_SESSION['email'] = $user['email'];
+            // $_SESSION['user_id'] = $user['id'];
+            // $_SESSION['user_name'] = $user['user_name'];
+            $_SESSION['email'] = $email;
 
-            echo "Login successful! Welcome, " . $_SESSION['user_name'];
-            // header('Location: ../../index.php'); 
+            // echo "Login successful! Welcome, " . $_SESSION['user_name'];
+            header('Location: ../../index.php'); 
         } else {
-            echo "Invalid email or password!";
+            return false;
         }
     }
     public function select($email){

@@ -1,8 +1,14 @@
 <?php
 session_start();
 
-// إذا كانت السلة فارغة
 $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+
+if (isset($_GET['remove_from_cart'])) {
+    $itemId = $_GET['remove_from_cart'];
+    unset($_SESSION['cart'][$itemId]);
+    header("Location: cart.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +42,7 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
         <h2 class="text-center text-danger fw-bold">Your Cart</h2>
         <div class="row">
             <?php if (count($cart) > 0): ?>
-                <?php foreach ($cart as $item): ?>
+                <?php foreach ($cart as $itemId => $item): ?>
                     <div class="col-md-4">
                         <div class="card">
                             <img src="../../public/images/<?= $item['image'] ?>" class="card-img-top" alt="Food">
@@ -45,6 +51,8 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
                                 <p class="text-danger fw-bold">$<?= number_format($item['price'], 2) ?></p>
                                 <p class="card-text"><?= $item['description'] ?></p>
                                 <p>Quantity: <?= $item['quantity'] ?></p>
+                                <!-- Option to remove item from the cart -->
+                                <a href="cart.php?remove_from_cart=<?= $itemId ?>" class="btn btn-danger">Remove from Cart</a>
                             </div>
                         </div>
                     </div>

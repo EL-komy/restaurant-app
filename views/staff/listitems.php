@@ -2,7 +2,6 @@
 require_once "shared/navbar.php";
 
 require_once '../../controllers/MenuController.php';
-// var_dump("ddddd");
 if(isset($_GET['delete'])){
   $id=$_GET['delete'];
   $delete=new MenuController();
@@ -68,6 +67,7 @@ $cat=$item->select();
                     <td>
                         <a href="?delete=<?=$item['id'];?>" class="btn btn-danger">Delete</a>
                         <a href="edititem.php?edit=<?=$item['id'];?>" class="btn btn-warning">Edit</a>
+                        <a href="offers.php?edit=<?=$item['id'];?>" class="btn btn-primary">Add Offers</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
