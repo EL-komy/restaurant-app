@@ -17,9 +17,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     
-    $stmt = $pdo->prepare("SELECT * FROM tables WHERE chairs >= ? AND available = 1 ");
-    $stmt->execute([$guests]);
+    $stmt = $pdo->prepare("
+    SELECT * FROM tables t
+    WHERE t.chairs >= ? 
+    AND t.id NOT IN (
+        SELECT r.table_id FROM reservation r 
+        WHERE r.reservation_date = ? AND r.reservation_time = ?
+    )
+    LIMIT 1
+");
+    $stmt->execute([$guests, $date, $time]);
     $table = $stmt->fetch();
+
+
 
     if (!$table) {
         die("there is no tables available for this number of guests");
