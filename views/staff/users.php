@@ -57,6 +57,7 @@ $users = $controller->selectAll();
                                         echo '<form method="post" action="">
                                         <input type="hidden" name="id" value="' . $user['id'] . '">
                                         <select name="role" class="form-select" style="width: 100px;">
+                                            <option selected>Role</option>
                                             <option value="1" ' . ($user['rolee'] == 1 ? 'selected' : '') . '>Customer</option>
                                             <option value="2" ' . ($user['rolee'] == 2 ? 'selected' : '') . '>Admin</option>
                                         </select>
