@@ -37,7 +37,11 @@ class OrderController {
         return $item;
     }
 
-  
+    public function totalOrder(){
+        $item=$this->item->totalOrder();
+        return $item;
+    }
+
 
     public function insertOffer($id, $price, $expiry_date){
         $item=$this->item->insertOffer($id, $price, $expiry_date);

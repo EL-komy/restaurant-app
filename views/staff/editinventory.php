@@ -1,4 +1,22 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['email'])) {
+    header("Location: ../shared/login.php");
+    exit();
+}
+require_once '../../config/db.php';
+require_once '../../models/User.php';
+$database = new Database();
+$db = $database->connect();
+$userModel = new User($db);
+$user = $userModel->select($_SESSION['email']);
+
+// Check if the user is an admin
+if ($user['rolee'] != 2) { // Assuming rolee is the column name for role in your database
+    header("Location: error.php");
+    exit();
+}
 require_once "shared/navbar.php";
 require_once '../../controllers/InventoryController.php';
 require_once '../../controllers/SupplierController.php';
@@ -31,6 +49,7 @@ if (isset($_GET['edit'])) {
 $supplierController = new SupplierController();
 $suppliers = $supplierController->select();
 ?>
+<?php if($user['rolee'] == 2): ?>
 <main id="main" class="main">
     <div class="pagetitle">
         <h1>Edit Inventory</h1>
@@ -87,6 +106,11 @@ $suppliers = $supplierController->select();
         </div>
     </section>
 </main>
+<?php endif; ?>
+
 <?php
-require_once "shared/footer.php";
+// Only include the footer if the user is an admin
+if ($user['rolee'] == 2) {
+    require_once "shared/footer.php";
+}
 ?>
