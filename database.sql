@@ -100,8 +100,8 @@ CREATE TABLE `reservation`(
     id int PRIMARY KEY AUTO_INCREMENT,
     user_id int,
     table_id int ,
-    reservation_date text,
-    reservation_time text,
+    reservation_date date,
+    reservation_time time,
     guests int,
     table_status boolean,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -235,8 +235,59 @@ INSERT INTO `payments` (order_id, payment_method, amount, status) VALUES
 (3, 'Paypal', 75.00, 'completed');
 
 
+-- TRRIGER for item content
 
 //offers
 
 INSERT INTO offers (item_id, new_price, expiry_at) 
 VALUES (2, 5.99, '2025-03-31 23:59:59');
+DELIMITER //
+
+CREATE TRIGGER update_menu_item_availability
+AFTER UPDATE ON inventory
+FOR EACH ROW
+BEGIN
+    DECLARE item_count INT;
+    DECLARE out_of_stock INT;
+
+    -- Check if the updated inventory item is associated with any menu item
+    SELECT COUNT(*) INTO item_count
+    FROM itemcontent
+    WHERE inventory_id = NEW.id;
+
+    -- If the inventory item is associated with a menu item
+    IF item_count > 0 THEN
+        -- Check if any of the required inventory items are out of stock
+        SELECT COUNT(*) INTO out_of_stock
+        FROM itemcontent ic
+        JOIN inventory i ON ic.inventory_id = i.id
+        WHERE ic.item_id IN (
+            SELECT item_id
+            FROM itemcontent
+            WHERE inventory_id = NEW.id
+        )
+        AND i.quantity <= 0;
+
+        -- If any required inventory item is out of stock, mark the menu item as unavailable
+        IF out_of_stock > 0 THEN
+            UPDATE menu_items
+            SET available = 'no'
+            WHERE id IN (
+                SELECT item_id
+                FROM itemcontent
+                WHERE inventory_id = NEW.id
+            );
+        ELSE
+            -- If all required inventory items are in stock, mark the menu item as available
+            UPDATE menu_items
+            SET available = 'yes'
+            WHERE id IN (
+                SELECT item_id
+                FROM itemcontent
+                WHERE inventory_id = NEW.id
+            );
+        END IF;
+    END IF;
+END //
+
+DELIMITER ;

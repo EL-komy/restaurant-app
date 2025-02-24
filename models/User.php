@@ -213,4 +213,11 @@ class User
     //     }
     //     return $stmt->rowCount() > 0; 
     // }
+
+    public function updateRole($id, $role) {
+        $stmt = $this->conn->prepare("UPDATE users SET rolee = :role WHERE id = :id");
+        $stmt->bindParam(':role', $role);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
 }

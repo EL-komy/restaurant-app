@@ -32,6 +32,13 @@ class OrderController {
         }
     }
 
+    public function totalSales(){
+        $item=$this->item->totalSales();
+        return $item;
+    }
+
+  
+
     public function insertOffer($id, $price, $expiry_date){
         $item=$this->item->insertOffer($id, $price, $expiry_date);
         if(!$item){

@@ -5,6 +5,7 @@ require_once '../../controllers/MenuController.php';
 $controller = new MenuController();
 $menuItems = $controller->selectcategory(); // Get all items in the menu (including empty categories)
 $offers = $controller->selectOffers(); // Get all special offers
+// $menuItems = $controller->selectcat();
 
 // Add item to the cart when clicked
 if (isset($_GET['add_to_cart'])) {
@@ -34,6 +35,7 @@ if (isset($_GET['add_to_cart'])) {
                         'price' => $newPrice, // Use the new price if there's an offer
                         'image' => $item['image'],
                         'description' => $item['description'],
+                        
                         'quantity' => 1
                     ];
                 }
@@ -145,13 +147,15 @@ if (isset($_GET['add_to_cart'])) {
                             <div class="card">
                                 <img src="<?= !empty($offer['image']) ? '../../public/images/' . $offer['image'] : 'default.jpg' ?>" class="card-img-top" alt="Food">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title"><?= $offer['item_name'] ?></h5>
-                                    <p class="text-danger fw-bold">
-                                        <del>$<?= number_format($offer['price'], 2) ?></del> 
-                                        $<?= number_format($offer['new_price'], 2) ?>
-                                    </p>
-                                    <p class="card-text"><?= $offer['description'] ?></p>
-                                    <a href="menu.php?add_to_cart=<?= $offer['item_id'] ?>" class="btn btn-danger w-100">Add to Cart</a>
+                                    <h5 class="card-title"><?= $item['item_name'] ?></h5>
+                                    <p class="text-danger fw-bold">$<?= number_format($item['price'], 2) ?></p>
+                                    <p class="card-text"><?= $item['description'] ?></p>
+                                    <!-- هنا نقوم بإضافة الرابط لزر "Add to Cart" والذي يرسل مع الـ GET id المنتج -->
+                                    <?php if ($item['available'] === 'yes'): ?>
+                                        <a href="menu.php?add_to_cart=<?= $item['item_id'] ?>" class="btn btn-danger w-100">Add to Cart</a>
+                                    <?php else: ?>
+                                        <button class="btn btn-secondary w-100" disabled>Out of Stock</button>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

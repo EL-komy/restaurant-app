@@ -24,6 +24,10 @@ class CustomerController {
         }
     }
 
+    // public function updateMenuItem($itemId, $newPrice) {
+    //     // Logic to update menu item price
+    //     echo "Updated menu item $itemId with new price $newPrice";
+    // }
     public function logout() {
         session_start();
         session_unset();
@@ -52,6 +56,12 @@ class CustomerController {
             return false;
         }
     }
+
+    public function changeRole($id, $role) {
+        $this->user->updateRole($id, $role);
+    }
+
+    
     public function select($email){
        
         $user = $this->user->select($email);
