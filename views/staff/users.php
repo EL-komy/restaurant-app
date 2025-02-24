@@ -56,17 +56,18 @@ $users = $controller->selectAll();
                                         echo '<td><div style="display:flex; gap:10px;">';
                                         echo '<form method="post" action="">
                                         <input type="hidden" name="id" value="' . $user['id'] . '">
-                                        <select name="role" style="width: 100px;">
+                                        <select name="role" class="form-select" style="width: 100px;">
                                             <option value="1" ' . ($user['rolee'] == 1 ? 'selected' : '') . '>Customer</option>
                                             <option value="2" ' . ($user['rolee'] == 2 ? 'selected' : '') . '>Admin</option>
                                         </select>
-                                        <button class="btn btn-primary rounded-pill" style="width: 100px;" name="changeRole" type="submit">Change</button>
+                                      
+                                        <button class="btn btn-primary " style="width: 100px;" name="changeRole" type="submit">Change</button>
                                       </form>';
 
                                         echo '<td><div style="display:flex; gap:10px;">';
                                         echo '<form method="post" action="">
                                             <input type="hidden" name="id" value="' . $user['id'] . '">
-                                            <button class="btn btn-danger rounded-pill" style="width: 100px;" name="delete" type="submit">Delete</button>
+                                            <button class="btn btn-danger " style="width: 100px;" name="delete" type="submit">Delete</button>
                                             </form>';
                                             echo '</div></td>';
                                         // echo '<form method="post" action="">
