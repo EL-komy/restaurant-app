@@ -1,5 +1,5 @@
 <?php
-// require_once "../../config/valid_signup.php";
+require_once "../../config/valid_signup.php";
 require_once "../../controllers/CustomerController.php";
 if (isset($_POST['submit'])) {
     if (empty($errors)) {

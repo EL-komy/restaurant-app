@@ -57,16 +57,16 @@ class Menu
     }
 
     // Select a single menu item
-    public function insertOffer($id, $price, $expiry_date)
-    {
-        $insertQuery = "INSERT INTO offers (item_id, new_price, expiry_at) VALUES
-         (:id, :price, :expiry_date)";
-        $stmt = $this->conn->prepare($insertQuery);
-        $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':price', $price);
-        $stmt->bindParam(':expiry_date', $expiry_date);
-        return $stmt->execute();
-    }
+    // public function insertOffer($id, $price, $expiry_date)
+    // {
+    //     $insertQuery = "INSERT INTO offers (item_id, new_price, expiry_at) VALUES
+    //      (:id, :price, :expiry_date)";
+    //     $stmt = $this->conn->prepare($insertQuery);
+    //     $stmt->bindParam(':id', $id);
+    //     $stmt->bindParam(':price', $price);
+    //     $stmt->bindParam(':expiry_date', $expiry_date);
+    //     return $stmt->execute();
+    // }
     // public function select(){
     //     $selectQuery="SELECT * FROM menu_items";
     //     $stmt = $this->conn->prepare($selectQuery);

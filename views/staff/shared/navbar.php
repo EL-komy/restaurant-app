@@ -1,31 +1,31 @@
 <?php
-// session_start();
-// require_once '../../controllers/NotificationController.php';
-// require_once "../../controllers/CustomerController.php";
+session_start();
+require_once '../../controllers/NotificationController.php';
+require_once "../../controllers/CustomerController.php";
 
-// $email = $_SESSION['email'];
+$email = $_SESSION['email'];
 
-// if ($email) {
-//   $controller = new CustomerController();
-//   $user = $controller->select($email);
-// } else {
-//   header("Location:../shared/login.php");
-// }
+if ($email) {
+  $controller = new CustomerController();
+  $user = $controller->select($email);
+} else {
+  header("Location:../shared/login.php");
+}
 
-// $notificationController = new NotificationController();
+$notificationController = new NotificationController();
 
-// $notifications = $notificationController->selectAll($user['id']);
-// $notificationCount = count($notifications); 
+$notifications = $notificationController->selectAll($user['id']);
+$notificationCount = count($notifications); 
 
-// $unreadCount = $notificationController->getUnreadCount($user['id']); 
+$unreadCount = $notificationController->getUnreadCount($user['id']); 
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' &&  isset($_POST['noti'])  && isset($_POST['notification_id'])) {
-//     $notificationId = $_POST['notification_id'];
-//     $notificationController->markNotificationAsRead($notificationId);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' &&  isset($_POST['noti'])  && isset($_POST['notification_id'])) {
+    $notificationId = $_POST['notification_id'];
+    $notificationController->markNotificationAsRead($notificationId);
    
-//     $notifications = $notificationController->selectAll($user['id']);
-//     $unreadCount = $notificationController->getUnreadCount($user['id']);
-// }
+    $notifications = $notificationController->selectAll($user['id']);
+    $unreadCount = $notificationController->getUnreadCount($user['id']);
+}
 
 ?>
 <!DOCTYPE html>
