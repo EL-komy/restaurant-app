@@ -319,7 +319,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&  isset($_POST['noti'])  && isset($_
 
         <!-- Profile -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.html">
+            <a class="nav-link collapsed" href="admin.php">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>
