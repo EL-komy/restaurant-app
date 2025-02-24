@@ -31,7 +31,7 @@ $users = $controller->selectAll();
                         <table class="table datatable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>#</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -45,9 +45,9 @@ $users = $controller->selectAll();
                             <tbody>
                                 <?php
                                 if (count($users) > 0) {
-                                    foreach ($users as $user) {
+                                    foreach ($users as $index => $user) {
                                         echo "<tr>";
-                                        echo "<td>{$user['id']}</td>";
+                                        echo "<td>" . ($index + 1) . "</td>";
                                         echo "<td>{$user['user_name']}</td>";
                                         echo "<td style='width: 50px;'>{$user['email']}</td>";
                                         echo "<td>{$user['phone']}</td>";
@@ -57,7 +57,7 @@ $users = $controller->selectAll();
                                         echo '<form method="post" action="">
                                         <input type="hidden" name="id" value="' . $user['id'] . '">
                                         <select name="role" class="form-select" style="width: 100px;">
-                                            <option selected>Role</option>
+                                           
                                             <option value="1" ' . ($user['rolee'] == 1 ? 'selected' : '') . '>Customer</option>
                                             <option value="2" ' . ($user['rolee'] == 2 ? 'selected' : '') . '>Admin</option>
                                         </select>
