@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     var_dump($photo);
 
-    // تحديث البيانات مع التعامل مع كلمة المرور الفارغة
+    
     $customer->updateUser($name, $email, !empty($password) ? $password : null, $address, $phone,$photo);
     
     header("Location: userinfo.php");

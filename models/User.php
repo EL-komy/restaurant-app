@@ -220,4 +220,16 @@ class User
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+    public function updateAdmin($id,$name, $email, $address, $phone){
+        $stmt = $this->conn->prepare("UPDATE users SET user_name=:name,email=:email,phone=:phone,addresss=:address  WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':address', $address);
+       
+        return $stmt->execute();
+    }
+    
 }
+   
