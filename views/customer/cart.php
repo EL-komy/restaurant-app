@@ -6,6 +6,17 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 if (isset($_GET['remove_from_cart'])) {
     $itemId = $_GET['remove_from_cart'];
     unset($_SESSION['cart'][$itemId]);
+
+
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $_SESSION['cart_options'] = [
+            'cheese' => $_POST['cheese'],
+            'tomato' => $_POST['tomato'],
+            'drink' => $_POST['drink']
+        ];
+    }
+
     header("Location: cart.php");
     exit();
 }
@@ -13,6 +24,7 @@ if (isset($_GET['remove_from_cart'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +32,7 @@ if (isset($_GET['remove_from_cart'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../public/css/index.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
@@ -68,4 +81,5 @@ if (isset($_GET['remove_from_cart'])) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
