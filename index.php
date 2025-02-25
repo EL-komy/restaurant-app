@@ -170,13 +170,13 @@
     </div>
 
 
-    <!-- <button id="meal-btn"
+    <button id="meal-btn"
         type="button"
         class="btn btn-primary"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal">
         check your meal
-    </button> -->
+    </button>
 
 
     <div

@@ -2,6 +2,7 @@
 session_start(); // Start session to enable cart storage
 require_once '../../controllers/MenuController.php';
 
+
 $controller = new MenuController();
 $menuItems = $controller->selectcategory(); // Get all items in the menu (including empty categories)
 $offers = $controller->selectOffers(); // Get all special offers
@@ -10,7 +11,7 @@ $offers = $controller->selectOffers(); // Get all special offers
 // Add item to the cart when clicked
 if (isset($_GET['add_to_cart'])) {
     $itemId = $_GET['add_to_cart'];
-    
+
     // Search for the item by its id and find its offer if it exists
     foreach ($menuItems as $categoryName => $items) {
         foreach ($items as $item) {
@@ -23,7 +24,7 @@ if (isset($_GET['add_to_cart'])) {
                         break;
                     }
                 }
-                
+
                 // If the item is already in the cart, increase the quantity
                 if (isset($_SESSION['cart'][$itemId])) {
                     $_SESSION['cart'][$itemId]['quantity']++;
@@ -35,7 +36,7 @@ if (isset($_GET['add_to_cart'])) {
                         'price' => $newPrice, // Use the new price if there's an offer
                         'image' => $item['image'],
                         'description' => $item['description'],
-                        
+
                         'quantity' => 1
                     ];
                 }
@@ -43,6 +44,8 @@ if (isset($_GET['add_to_cart'])) {
             }
         }
     }
+
+    require_once 'myextraitems.php';
 
     // Redirect the user to the cart page after adding the item
     // header("Location: cart.php");
@@ -97,7 +100,7 @@ if (isset($_GET['add_to_cart'])) {
                     <?php foreach ($menuItems as $categoryName => $items): ?>
                         <h3 class="text-center text-primary"><?= $categoryName ?></h3>
                         <?php foreach ($items as $item): ?>
-                            <?php 
+                            <?php
                             $newPrice = $item['price']; // Default is the original price
                             $isOfferItem = false;
                             foreach ($offers as $offer) {
@@ -120,12 +123,23 @@ if (isset($_GET['add_to_cart'])) {
                                         <h5 class="card-title"><?= $item['item_name'] ?></h5>
                                         <p class="text-danger fw-bold">
                                             <?php if ($newPrice != $item['price']): ?>
-                                                <del>$<?= number_format($item['price'], 2) ?></del> 
+                                                <del>$<?= number_format($item['price'], 2) ?></del>
                                             <?php endif; ?>
                                             $<?= number_format($newPrice, 2) ?>
                                         </p>
                                         <p class="card-text"><?= $item['description'] ?></p>
-                                        <a href="menu.php?add_to_cart=<?= $item['item_id'] ?>" class="btn btn-danger w-100">Add to Cart</a>
+                                        <!-- <a href="myextraitems.php?item_id=<?= $item['item_id'] ?>" class="btn btn-danger w-100">Add to Cart</a> -->
+                                        <button id="meal-btn"
+                                            type="button"
+                                            class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal<?= $item['item_id']; ?>"
+
+                                            
+                                            >
+
+                                            add extra items for your meal
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -181,6 +195,9 @@ if (isset($_GET['add_to_cart'])) {
             </div>
         </div>
     </footer>
+<?php
+    require_once 'myextraitems.php';
+    ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

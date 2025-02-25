@@ -7,6 +7,17 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 if (isset($_GET['remove_from_cart'])) {
     $itemId = $_GET['remove_from_cart'];
     unset($_SESSION['cart'][$itemId]);
+
+
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $_SESSION['cart_options'] = [
+            'cheese' => $_POST['cheese'],
+            'tomato' => $_POST['tomato'],
+            'drink' => $_POST['drink']
+        ];
+    }
+
     header("Location: cart.php");
     exit();
 }
@@ -28,6 +39,7 @@ if (isset($_POST['update_quantity'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,6 +54,7 @@ if (isset($_POST['update_quantity'])) {
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg ">
