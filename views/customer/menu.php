@@ -80,8 +80,11 @@ if (isset($_GET['add_to_cart'])) {
                     <li class="nav-item"><a class="btn btn-outline-light" href="#">Menu</a></li>
                 </ul>
                 <a href="cart.php"> <i class="bi bi-cart cart-icon"></i></a>
-                <button class="lang-btn">Sign Up</button>
-                <button class="login-btn">Log In</button>
+                <?php if (isset($_SESSION['email'])): ?>
+                <a href="config\logout.php" class="btn btn-danger">Log Out</a>
+            <?php else: ?>
+                <a href=".\views\shared\login.php" class="btn btn-danger">Log In</a>
+            <?php endif; ?>
             </div>
         </div>
     </nav>

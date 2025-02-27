@@ -71,6 +71,12 @@ if (isset($_POST['update_quantity'])) {
         <?= array_sum(array_column($cart, 'quantity')) ?>
     </span>
 </a>
+
+                <?php if (isset($_SESSION['email'])): ?>
+                <a href="config\logout.php" class="btn btn-danger">Log Out</a>
+            <?php else: ?>
+                <a href=".\views\shared\login.php" class="btn btn-danger">Log In</a>
+            <?php endif; ?>
             </div>
         </div>
     </nav>
