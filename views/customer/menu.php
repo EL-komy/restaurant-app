@@ -45,8 +45,8 @@ if (isset($_GET['add_to_cart'])) {
     }
 
     // Redirect the user to the cart page after adding the item
-    header("Location: cart.php");
-    exit();
+    // header("Location: cart.php");
+    // exit();
 }
 ?>
 
@@ -76,7 +76,7 @@ if (isset($_GET['add_to_cart'])) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="btn btn-outline-light" href="../../index.php">Home</a></li>
-                    <li class="nav-item"><a class="btn btn-outline-light" href="#">Profile</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-light" href="shared/userinfo.php">Profile</a></li>
                     <li class="nav-item"><a class="btn btn-outline-light" href="#">Menu</a></li>
                 </ul>
                 <a href="cart.php"> <i class="bi bi-cart cart-icon"></i></a>

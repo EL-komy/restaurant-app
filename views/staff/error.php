@@ -24,6 +24,6 @@
     </style>
 </head>
 <body>
-    <img src="error.jpeg" alt="error image">
+    <img src="error.png" alt="error image">
 </body>
 </html>
