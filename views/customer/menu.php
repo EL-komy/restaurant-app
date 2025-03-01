@@ -5,7 +5,6 @@ require_once '../../controllers/MenuController.php';
 $controller = new MenuController();
 $menuItems = $controller->selectcategory(); // Get all items in the menu (including empty categories)
 $offers = $controller->selectOffers(); // Get all special offers
-// $menuItems = $controller->selectcat();
 
 // Add item to the cart when clicked
 if (isset($_GET['add_to_cart'])) {
@@ -35,7 +34,6 @@ if (isset($_GET['add_to_cart'])) {
                         'price' => $newPrice, // Use the new price if there's an offer
                         'image' => $item['image'],
                         'description' => $item['description'],
-                        
                         'quantity' => 1
                     ];
                 }
@@ -58,14 +56,16 @@ if (isset($_GET['add_to_cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Menu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../public/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../public/css/index.css">
+   
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid ">
             <a class="navbar-brand" href="#">
                 <img src="../../public/images/logo2.jpg" alt="Logo">
             </a>
@@ -76,15 +76,20 @@ if (isset($_GET['add_to_cart'])) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="btn btn-outline-light" href="../../index.php">Home</a></li>
-                    <li class="nav-item"><a class="btn btn-outline-light" href="shared/userinfo.php">Profile</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-light" href="http://localhost:8080/views/shared/userinfo.php">Profile</a></li>
                     <li class="nav-item"><a class="btn btn-outline-light" href="#">Menu</a></li>
                 </ul>
-                <a href="cart.php"> <i class="bi bi-cart cart-icon"></i></a>
+                <a href="cart.php" class="btn btn-outline-light position-relative">
+                    <i class="bi bi-cart cart-icon"></i>
+                    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <?= array_sum(array_column($_SESSION['cart'] ?? [], 'quantity')) ?>
+                    </span>
+                </a>
                 <?php if (isset($_SESSION['email'])): ?>
-                <a href="config\logout.php" class="btn btn-danger">Log Out</a>
-            <?php else: ?>
-                <a href=".\views\shared\login.php" class="btn btn-danger">Log In</a>
-            <?php endif; ?>
+                    <a href="config/logout.php" class="btn btn-danger">Log Out</a>
+                <?php else: ?>
+                    <a href="./views/shared/login.php" class="btn btn-danger">Log In</a>
+                <?php endif; ?>
             </div>
         </div>
     </nav>
@@ -150,15 +155,10 @@ if (isset($_GET['add_to_cart'])) {
                             <div class="card">
                                 <img src="<?= !empty($offer['image']) ? '../../public/images/' . $offer['image'] : 'default.jpg' ?>" class="card-img-top" alt="Food">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title"><?= $item['item_name'] ?></h5>
-                                    <p class="text-danger fw-bold">$<?= number_format($item['price'], 2) ?></p>
-                                    <p class="card-text"><?= $item['description'] ?></p>
-                                    <!-- هنا نقوم بإضافة الرابط لزر "Add to Cart" والذي يرسل مع الـ GET id المنتج -->
-                                    <?php if ($item['available'] === 'yes'): ?>
-                                        <a href="menu.php?add_to_cart=<?= $item['item_id'] ?>" class="btn btn-danger w-100">Add to Cart</a>
-                                    <?php else: ?>
-                                        <button class="btn btn-secondary w-100" disabled>Out of Stock</button>
-                                    <?php endif; ?>
+                                    <h5 class="card-title"><?= $offer['item_name'] ?></h5>
+                                    <p class="text-danger fw-bold">$<?= number_format($offer['new_price'], 2) ?></p>
+                                    <p class="card-text"><?= $offer['description'] ?></p>
+                                    <a href="menu.php?add_to_cart=<?= $offer['item_id'] ?>" class="btn btn-danger w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -168,7 +168,6 @@ if (isset($_GET['add_to_cart'])) {
                 <?php endif; ?>
             </div>
         </div>
-
     </div>
 
     <!-- Footer -->
@@ -185,7 +184,22 @@ if (isset($_GET['add_to_cart'])) {
         </div>
     </footer>
 
+    <!-- JavaScript to Prevent Double-Clicking -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('a[href*="add_to_cart"]');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent the default link behavior
+                    const url = this.getAttribute('href');
+                    this.style.pointerEvents = 'none'; // Disable the button after click
+                    this.innerText = 'Adding...'; // Change button text to indicate loading
+                    window.location.href = url; // Redirect to the add_to_cart URL
+                });
+            });
+        });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

@@ -44,7 +44,7 @@ if (isset($_POST['update_quantity'])) {
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg ">
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="/public/images/logo2.jpg" alt="Logo" style="height: 40px;" rounded> <!-- Corrected path -->
@@ -58,7 +58,7 @@ if (isset($_POST['update_quantity'])) {
                         <a class="nav-link" href="/index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
+                        <a class="nav-link" href="http://localhost:8080/views/shared/userinfo.php">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="menu.php">Menu</a>
@@ -66,17 +66,17 @@ if (isset($_POST['update_quantity'])) {
                 </ul>
                 <!-- Cart Icon with Dynamic Count -->
                 <a href="cart.php" class="btn btn-outline-light position-relative">
-    <i class="fas fa-shopping-cart" style="color: red;"></i> <!-- Red cart icon -->
-    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-        <?= array_sum(array_column($cart, 'quantity')) ?>
-    </span>
-</a>
+                    <i class="fas fa-shopping-cart" style="color: red;"></i> <!-- Red cart icon -->
+                    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <?= array_sum(array_column($cart, 'quantity')) ?>
+                    </span>
+                </a>
 
                 <?php if (isset($_SESSION['email'])): ?>
-                <a href="config\logout.php" class="btn btn-danger">Log Out</a>
-            <?php else: ?>
-                <a href=".\views\shared\login.php" class="btn btn-danger">Log In</a>
-            <?php endif; ?>
+                    <a href="config/logout.php" class="btn btn-danger">Log Out</a>
+                <?php else: ?>
+                    <a href="./views/shared/login.php" class="btn btn-danger">Log In</a>
+                <?php endif; ?>
             </div>
         </div>
     </nav>
@@ -100,7 +100,7 @@ if (isset($_POST['update_quantity'])) {
                                     <button type="button" class="btn btn-outline-secondary quantity-btn minus" data-item-id="<?= $itemId ?>">-</button>
                                     <input type="number" name="quantity" class="form-control mx-2 text-center" value="<?= $item['quantity'] ?>" min="1" style="width: 60px;">
                                     <button type="button" class="btn btn-outline-secondary quantity-btn plus" data-item-id="<?= $itemId ?>">+</button>
-                                  
+                                    <button type="submit" name="update_quantity" style="display: none;"></button> <!-- Hidden submit button -->
                                 </form>
                                 <!-- Remove from Cart -->
                                 <a href="cart.php?remove_from_cart=<?= $itemId ?>" class="btn btn-danger mt-2">Remove from Cart</a>
@@ -118,12 +118,12 @@ if (isset($_POST['update_quantity'])) {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
     <script>
-        // JavaScript to handle plus/minus buttons
+        // JavaScript to handle plus/minus buttons and form submission
         document.querySelectorAll('.quantity-btn').forEach(button => {
             button.addEventListener('click', function() {
-                const input = this.closest('form').querySelector('input[name="quantity"]');
+                const form = this.closest('form');
+                const input = form.querySelector('input[name="quantity"]');
                 let quantity = parseInt(input.value);
 
                 if (this.classList.contains('minus')) {
@@ -133,8 +133,22 @@ if (isset($_POST['update_quantity'])) {
                 }
 
                 input.value = quantity;
+                form.querySelector('button[type="submit"]').click(); // Submit the form
             });
         });
     </script>
+    <!-- Footer -->
+    <footer id="contact" class="footer text-center">
+        <div class="container">
+            <h5>Contact Us</h5>
+            <p>Email: info@myrestaurant.com | Phone: +123 456 7890</p>
+            <div>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

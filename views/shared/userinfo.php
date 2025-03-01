@@ -81,32 +81,18 @@ if($email){
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light" href="#"> <i class="bi bi-check-lg"></i> Delivery</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light" href="#">Self-Pickup</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light" href="#">Dine-In</a>
-                    </li>
-                    <li class="nav-item location-select dropdown">
-                        <a class="btn btn-outline-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Choose Location
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">City 1</a></li>
-                            <li><a class="dropdown-item" href="#">City 2</a></li>
-                            <li><a class="dropdown-item" href="#">City 3</a></li>
-                            <li><a class="dropdown-item" href="#">City 4</a></li>
-                        </ul>
-                    </li>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="btn btn-outline-light" href="../../index.php">Home</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-light" href="http://localhost:8080/views/shared/userinfo.php">Profile</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-light" href="http://localhost:8080/views/customer/menu.php">Menu</a></li>
                 </ul>
+               
                 <i class="bi bi-cart cart-icon"></i>
-                <button class="lang-btn" onclick="changeLanguage()">العربية</button>
-                <img src="../../public/images/2.jpg" class="img-fluid rounded mx-3" alt="Rounded Image" width="100px">
+                <?php if (isset($_SESSION['email'])): ?>
+                    <a href="config/logout.php" class="btn btn-danger">Log Out</a>
+                <?php else: ?>
+                    <a href="./views/shared/login.php" class="btn btn-danger">Log In</a>
+                <?php endif; ?>
 
             </div>
         </div>
@@ -119,20 +105,7 @@ if($email){
         <div><strong>Name:</strong> <?=$user['user_name']?></div>
         <div><strong>Email:</strong> <?=$user['email']?></div>
         <div><strong>Address:</strong> <?=$user['addresss']?></div>
-        <div><strong>Name:</strong> <?=$user['name']?></div>
-        <div><strong>Email:</strong> <?=$user['email']?></div>
-        <div><strong>Address:</strong> <?=$user['address']?></div>
-
-        <div><strong>Name:</strong> <?=$user['user_name']?></div>
-        <div><strong>Email:</strong> <?=$user['email']?></div>
-        <div><strong>Address:</strong> <?=$user['addresss']?></div>
->>>>>>> 25d0ded (userProfile)
-=======
->>>>>>> d4ec197 (userProfile)
-=======
-        <div><strong>Email:</strong> <?=$user['email']?></div>
-        <div><strong>Address:</strong> <?=$user['addresss']?></div>
->>>>>>> a0a02c7 (users page in dashboard)
+       
         <div><strong>Phone:</strong> <?=$user['phone']?></div>
     </div>
     
