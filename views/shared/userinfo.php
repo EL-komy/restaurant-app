@@ -85,6 +85,7 @@ if($email){
                     <li class="nav-item"><a class="btn btn-outline-light" href="../../index.php">Home</a></li>
                     <li class="nav-item"><a class="btn btn-outline-light" href="http://localhost:8080/views/shared/userinfo.php">Profile</a></li>
                     <li class="nav-item"><a class="btn btn-outline-light" href="http://localhost:8080/views/customer/menu.php">Menu</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-light" href="http://localhost:8080/views/customer/orderhistory.php">Order History</a></li>
                 </ul>
                
                 <i class="bi bi-cart cart-icon"></i>

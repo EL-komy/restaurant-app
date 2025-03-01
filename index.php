@@ -162,7 +162,7 @@
                     <img src="https://gritsandgrids.s3.amazonaws.com/media/2017/02/Shade-Burger-YOD-studio-11.jpg" class="card-img-top" alt="Reserve">
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold">Reserve a Table</h5>
-                        <a href="#" class="btn btn-dark btn-lg w-100">Book Now</a>
+                        <a href="http://localhost:8080/views/shared/reservation.php" class="btn btn-dark btn-lg w-100">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -170,13 +170,7 @@
     </div>
 
 
-    <button id="meal-btn"
-        type="button"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal">
-        check your meal
-    </button>
+    
 
 
     <div
