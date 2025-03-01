@@ -72,9 +72,10 @@ if (isset($_GET['add_to_cart'])) {
                 
                 // Debugging - you can remove this in production
                 
-                    echo "<pre>";
-                    var_dump($_SESSION['cart'][$itemId]);
-                    echo "</pre>";
+                    // echo "<pre>";
+                    // // var_dump($_SESSION['cart'][$itemId]);
+                    // var_dump($_SESSION['cart']);
+                    // echo "</pre>";
                 
                 
                 break 2; // Stop looping once the item is found and added to the cart
@@ -87,7 +88,7 @@ if (isset($_GET['add_to_cart'])) {
     // header("Location: cart.php");
     // exit();
     
-    exit();
+    // exit();
 }
 ?>
 
@@ -104,25 +105,6 @@ if (isset($_GET['add_to_cart'])) {
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="../../public/images/logo2.jpg" alt="Logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="btn btn-outline-light" href="../../index.php">Home</a></li>
-                    <li class="nav-item"><a class="btn btn-outline-light" href="shared/userinfo.php">Profile</a></li>
-                    <li class="nav-item"><a class="btn btn-outline-light" href="#">Menu</a></li>
-                </ul>
-                <a href="cart.php"> <i class="bi bi-cart cart-icon"></i></a>
-                <button class="lang-btn">Sign Up</button>
-                <button class="login-btn">Log In</button>
     <!-- Navbar code removed for brevity -->
     
     <?php foreach ($Items as $item): ?>
