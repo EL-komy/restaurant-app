@@ -1,5 +1,11 @@
 <?php
+require_once '../../controllers/OptionsController.php';
+require_once '../../config/db.php';
 session_start(); // Start session to access cart data
+
+// Redirect to the menu page if the cart is empty
+$database = new Database();
+$pdo = $database->connect();
 
 // Redirect to the menu page if the cart is empty
 if (empty($_SESSION['cart'])) {
@@ -16,18 +22,48 @@ foreach ($_SESSION['cart'] as $item) {
 // Handle form submission for payment method
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $paymentMethod = $_POST['payment_method'];
-    
-    // Process the payment (this is just a placeholder; you can add your payment logic here)
-    if ($paymentMethod === 'visa') {
-        // Redirect to a Visa payment gateway or process Visa payment
-        echo "<script>alert('Redirecting to Visa payment gateway...');</script>";
-    } elseif ($paymentMethod === 'cash') {
-        // Handle cash payment
-        echo "<script>alert('You have chosen Cash on Delivery.');</script>";
+
+    // Fetch user_id from the database using the email stored in the session
+    $email = $_SESSION['email']; // Assuming the email is stored in the session
+    $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user) {
+        die("User not found."); // Handle the case where the user doesn't exist
     }
 
-    // Clear the cart after payment (optional)
-    // unset($_SESSION['cart']);
+    $userId = $user['id']; // Get the user_id
+    $status = 'pending'; // Default status
+
+    // Step 1: Insert into the `orders` table
+    $stmt = $pdo->prepare("INSERT INTO orders (user_id, status, total_price) VALUES (?, ?, ?)");
+    $stmt->execute([$userId, $status, $totalPrice]);
+    $orderId = $pdo->lastInsertId(); // Get the ID of the newly inserted order
+
+    // Step 2: Insert into the `order_details` table
+    foreach ($_SESSION['cart'] as $itemId => $item) {
+        $stmt = $pdo->prepare("INSERT INTO order_details (order_id, item_id, quantity, price) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$orderId, $itemId, $item['quantity'], $item['price']]);
+    }
+
+    // Step 3: Insert into the `payments` table
+    $paymentStatus = 'pending'; // Default payment status
+    $stmt = $pdo->prepare("INSERT INTO payments (order_id, payment_method, amount, status) VALUES (?, ?, ?, ?)");
+    $stmt->execute([$orderId, $paymentMethod, $totalPrice, $paymentStatus]);
+    $_SESSION['order_id'] = $orderId;
+$_SESSION['total_price'] = $totalPrice;
+$_SESSION['payment_method'] = $paymentMethod;
+
+// Redirect to the success page
+header("Location: order_success.php");
+exit();
+
+    // Clear the cart after the order is placed
+    
+    // Redirect to a success page or display a success message
+   // Redirect to the success page with order details
+
 }
 ?>
 
