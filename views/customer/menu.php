@@ -108,33 +108,45 @@ if (isset($_GET['add_to_cart'])) {
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container-fluid ">
-            <a class="navbar-brand" href="#">
-                <img src="../../public/images/logo2.jpg" alt="Logo">
+   <!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="../../public/images/logo2.jpg" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="btn btn-outline-light" href="../../index.php">Home</a></li>
+                <li class="nav-item"><a class="btn btn-outline-light" href="http://localhost:8080/views/shared/userinfo.php">Profile</a></li>
+                <li class="nav-item"><a class="btn btn-outline-light" href="#">Menu</a></li>
+            </ul>
+            <a href="cart.php" class="btn btn-outline-light position-relative">
+                <i class="bi bi-cart cart-icon"></i>
+                <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <?= array_sum(array_column($_SESSION['cart'] ?? [], 'quantity')) ?>
+                </span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="btn btn-outline-light" href="../../index.php">Home</a></li>
-                    <li class="nav-item"><a class="btn btn-outline-light" href="http://localhost:8080/views/shared/userinfo.php">Profile</a></li>
-                    <li class="nav-item"><a class="btn btn-outline-light" href="#">Menu</a></li>
-                </ul>
-                <a href="cart.php" class="btn btn-outline-light position-relative">
-                    <i class="bi bi-cart cart-icon"></i>
-                    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        <?= array_sum(array_column($_SESSION['cart'] ?? [], 'quantity')) ?>
-                    </span>
-                </a>
-                <?php if (isset($_SESSION['email'])): ?>
-                    <a href="config/logout.php" class="btn btn-danger">Log Out</a>
-                <?php else: ?>
-                    <a href="./views/shared/login.php" class="btn btn-danger">Log In</a>
-                <?php endif; ?>
-    <!-- Navbar code removed for brevity -->
+            <?php if (isset($_SESSION['email'])): ?>
+                <a href="config/logout.php" class="btn btn-danger">Log Out</a>
+            <?php else: ?>
+                <a href="./views/shared/login.php" class="btn btn-danger">Log In</a>
+            <?php endif; ?>
+        </div>
+    </div>
+</nav>
+
+<style>
+    /* Sticky Navbar */
+    .navbar.sticky-top {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+</style>
     
     <?php foreach ($Items as $item): ?>
         <div class="modal fade" id="exampleModal<?= $item['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
