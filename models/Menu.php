@@ -56,6 +56,15 @@ class Menu
         return $item;
     }
 
+    public function selectItems()
+    {
+        $selectQuery = "SELECT * FROM  menu_items ";
+        $stmt = $this->conn->prepare($selectQuery);
+        $stmt->execute();
+        $item = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $item;
+    }
+
     // Select a single menu item
     // public function insertOffer($id, $price, $expiry_date)
     // {

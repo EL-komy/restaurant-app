@@ -56,6 +56,12 @@ class MenuController {
         return $item;
     }
 
+    public function selectItems(){
+        $item=$this->item->selectItems();
+        // var_export($item);
+        return $item;
+    }
+
       
     // Select a single menu item
     public function selectone($id) {
@@ -81,7 +87,7 @@ class MenuController {
     
     public function selectcategory() {
         // استعلام لاستخراج كل الفئات مع العناصر
-        $selectQuery = "SELECT c.ctegory_name as category_name, c.id as category_id, m.id as item_id, m.name as item_name, m.description, m.price, m.image
+        $selectQuery = "SELECT c.ctegory_name as category_name, c.id as category_id, m.id as item_id, m.name as item_name, m.available as available , m.description, m.price, m.image
                         FROM categories c
                         LEFT JOIN menu_items m ON c.id = m.category_id"; // استخدام LEFT JOIN لعرض الفئات الفارغة
         $stmt = $this->db->prepare($selectQuery);

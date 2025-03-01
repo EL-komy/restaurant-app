@@ -25,14 +25,14 @@ CREATE TABLE menu_items (
     description TEXT,
     price FLOAT NOT NULL,
     image TEXT,
-    available ENUM('yes', 'no') NOT NULL DEFAULT 'yes'
+    available ENUM('yes', 'no') NOT NULL DEFAULT 'yes'  
 );
 
 CREATE TABLE item_options (
     id INT AUTO_INCREMENT PRIMARY KEY,
     item_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
-    im  age TEXT,
+    image TEXT,
     FOREIGN KEY (item_id) REFERENCES menu_items(id) ON DELETE CASCADE
 );
 
