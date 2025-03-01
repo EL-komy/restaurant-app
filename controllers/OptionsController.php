@@ -26,6 +26,12 @@ class OptionsController {
         return $option;
 
     }
+
+    public function selectall($id){
+        $options=$this->options->selectall($id);
+        return $options;
+
+    }
     public function delete($id){
         $item=$this->options->delete($id);
         if($item){

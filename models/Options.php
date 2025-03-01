@@ -14,6 +14,14 @@ class Options {
         $stmt->bindParam(':image', $image);
         return $stmt->execute();
     }
+
+    public function selectall($id) {
+        $selectQuery = "SELECT * FROM item_options where item_id = :item_id";
+        $stmt = $this->conn->prepare($selectQuery);
+        $stmt->bindParam(':item_id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function select()
 {
     $selectQuery = "
