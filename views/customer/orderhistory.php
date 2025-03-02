@@ -126,7 +126,7 @@ try {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="../../index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="shared/userinfo.php">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://localhost:8080/views/shared/userinfo.php">Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
             </ul>
             <a href="cart.php" class="btn btn-outline-light position-relative me-3">
