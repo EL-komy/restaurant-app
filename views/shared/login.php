@@ -47,12 +47,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($error)) {
         }
         .image-container {
             width: 50%;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            background: url('../../public/images/ai-generative-3d-style-design-of-fried-chicken-in-yellow-background-photo.jpg') center/cover;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            overflow: hidden;
+            margin: 0;
+        }
+        .image-container img {
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
         }
         .btn-primary {
-            background-color: rgb(159, 39, 39);
+            background-color: rgb(179 38 42);
             border-color: rgb(159, 39, 39);
         }
         .btn-primary:hover {
@@ -86,10 +95,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($error)) {
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
             <div class="text-center mt-3">
-                <a href="signup.php" class="btn btn-secondary w-100">Create an Account</a>
+            <a href="signup.php" class="btn btn-link w-100 ">Create an Account</a>
             </div>
         </div>
-        <div class="image-container"></div>
+        <div class="image-container">
+            <img src="../../public/images/12.jpg" alt="">
+        </div>
     </div>
 </body>
 </html>
