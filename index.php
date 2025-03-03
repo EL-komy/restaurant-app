@@ -66,37 +66,40 @@
     <!-- slider -->
      <div class="container">
     <header>
-        <div id="carouselExample" class="carousel slide mt-5" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="./public/images/12.jpg" class="d-block w-100" alt="Image 1">
-                    <div class="carousel-caption d-none d-md-block">
+    <div id="carouselExampleIndicators" class="carousel slide mt-5">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="./public/images/cover4.jpg" class="d-block w-100" alt="..." height="300vh">
+      <div class="carousel-caption d-none d-md-block" id="txt" style="text-align: start;margin-bottom:7%;">
                         <h5>Welcome to Fryco & Grill</h5>
                         <p>Delicious fried and grilled chicken just for you!</p>
-                        <a href="#" class="btn btn-light">View Menu</a>
+                        <a href="views/customer/menu.php" class="btn btn-light">View Menu</a>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="./public/images/2.jpg" class="d-block w-100" alt="Image 2">
-                    <div class="carousel-caption d-none d-md-block">
+    </div>
 
-                </div>
-                <div class="carousel-item">
-                    <img src="./public/images/desktop_thumbnail_27e08e66-1f58-4b6a-bafa-70caadd054ec.jpg" class="d-block w-100" alt="Image 3">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+    <div class="carousel-item">
+      <img src="./public/images/cover5.jpg" class="d-block w-100" alt="..."  height="300vh">
+    </div>
+    <div class="carousel-item">
+      <img src="./public/images/COVER7.jpg" class="d-block w-100" alt="..." height="300vh">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
     </header>
+
     <div class="sub-titel mt-5">
         <div>
             <h5 class="title">Explore Menu </h5>
@@ -104,7 +107,7 @@
 
         </div>
         <div>
-            <a href="#" class="ViewAll">
+            <a href="views/customer/menu.php" class="ViewAll">
                 <h6>View All <i class="bi bi-arrow-right-square"></i></h6>
             </a>
         </div>
@@ -113,17 +116,18 @@
     <!-- circles -->
     <div class="circle-container mt-5">
         <div class="circle">
-            <img src="./public/images/burger.png" class="circle-img" alt="Burger">
+            <img src="./public/images/burger1.jpg" class="circle-img" alt="Burger">
             <div class="overlay">Burger</div>
         </div>
         <div class="circle">
-            <img src="./public/images/five-star.avif" class="circle-img" alt="Pizza">
+            <img src="./public/images/pizza.jpeg" class="circle-img" alt="Pizza">
             <div class="overlay">Pizza</div>
         </div>
         <div class="circle">
-            <img src="./public/images/fried.webp" class="circle-img" alt="Fries">
+            <img src="./public/images/orange-box-french-fries-with-red-box-that-says-french-fries_899894-19860.avif" class="circle-img" alt="Fries">
             <div class="overlay">Fries</div>
         </div>
+
 
 
         <div class="circle">
@@ -131,12 +135,9 @@
             <div class="overlay">Drinks</div>
         </div>
 
+
         <div class="circle">
-            <img src="./public/images/oporto-family-burger-meal.jpg" class="circle-img" alt="Drinks">
-            <div class="overlay">Drinks</div>
-        </div>
-        <div class="circle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
                 <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
             </svg>
         </div>
@@ -162,7 +163,7 @@
                     <img src="https://gritsandgrids.s3.amazonaws.com/media/2017/02/Shade-Burger-YOD-studio-11.jpg" class="card-img-top" alt="Reserve">
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold">Reserve a Table</h5>
-                        <a href="#" class="btn btn-dark btn-lg w-100">Book Now</a>
+                        <a href="./views/shared/reservation.php" class="btn btn-dark btn-lg w-100">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -497,6 +498,14 @@ items.forEach((item, index) => {
     }, index * 700); 
 });
 
+
+
+
+document.querySelectorAll('.circle').forEach((circle) => {
+    circle.onclick = function () {
+      window.location.href = 'views/customer/menu.php';
+    };
+  });
     </script>
 </body>
 
