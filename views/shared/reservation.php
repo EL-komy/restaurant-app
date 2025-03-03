@@ -12,24 +12,36 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
         .container {
             display: flex;
             width: 1000px;
             background: white;
-            border-radius: 10px;
+            border-radius: 20px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
         .form-container {
             width: 50%;
-            padding: 20px;
+            padding: 40px;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
         }
         .image-container {
-            width: 100%;
-            background: url('../../public/images/dcddbdfac1a02feb089c4510443ac131.avif');
-            background-size: cover;
-            margin: 10px 10px;
+            width: 50%;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            overflow: hidden;
+            margin: 0;
+        }
+        .image-container img {
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
         }
         .btn-primary {
             background-color: rgb(159, 39, 39);
@@ -61,7 +73,9 @@
                 <button type="submit" class="btn btn-primary w-100">Reserve Now</button>
             </form>
         </div>
-        <div class="image-container"></div>
+        <div class="image-container">
+            <img src="../../public/images/dcddbdfac1a02feb089c4510443ac131.avif" alt="Restaurant Image">
+        </div>
     </div>
 </body>
 </html>

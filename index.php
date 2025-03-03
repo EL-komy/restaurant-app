@@ -47,7 +47,7 @@
                         <a class="btn btn-outline-light" href="index.php"> <i class="bi bi-check-lg"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-outline-light" href="#">Profile</a>
+                        <a class="btn btn-outline-light" href="./views/shared/userinfo.php">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-outline-light" href="views/customer/menu.php">Menu</a>
@@ -131,8 +131,8 @@
 
 
         <div class="circle">
-            <img src="./public/images/drinks.jpg" class="circle-img" alt="Drinks">
-            <div class="overlay">Drinks</div>
+            <img src="./public/images/pasta1.jpg" class="circle-img" alt="Drinks">
+            <div class="overlay">Pasta</div>
         </div>
 
 
@@ -422,48 +422,56 @@
 
     <!-- cards -->
     <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="./public/images/five-star.avif" class="card-img-top" alt="Ad 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Special Offer</h5>
-                        <p class="card-text">Get 20% off on all meals!</p>
-                    </div>
+    <div class="row">
+        <!-- Pasta Card -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="./public/images/pass.avif" class="card-img-top" alt="Pasta Ad">
+                <div class="card-body">
+                    <h5 class="card-title">Pasta</h5>
+                    <p class="card-text">Discover our delicious pasta options now!</p>
+                    <!-- Buy Now button with link to menu.php with #pasta as the ID -->
+                    <a href="views/customer/menu.php#pasta" class="btn btn-danger">Buy Now</a>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="./public/images/ai-generative-3d-style-design-of-fried-chicken-in-yellow-background-photo.jpg" class="card-img-top" alt="Ad 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Combo Deal</h5>
-                        <p class="card-text">Buy one, get one free on select items!</p>
-                    </div>
+        </div>
+        
+        <!-- Burger Card -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="./public/images/pac-landscape-1.webp" class="card-img-top" alt="Burger Ad">
+                <div class="card-body">
+                    <h5 class="card-title">Burger</h5>
+                    <p class="card-text">Taste the best burgers in town!</p>
+                    <!-- Buy Now button with link to menu.php with #burger as the ID -->
+                    <a href="views/customer/menu.php#burger" class="btn btn-danger">Buy Now</a>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="./public/images/oporto-family-burger-meal.jpg" class="card-img-top" alt="Ad 3">
-                    <div class="card-body">
-                        <h5 class="card-title">New Arrival</h5>
-                        <p class="card-text">Try our new spicy chicken wings!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="./public/images/fried.webp" class="card-img-top" alt="Ad 4">
-                    <div class="card-body">
-                        <h5 class="card-title">Limited Time</h5>
-                        <p class="card-text">Get a free drink with every meal!</p>
-                    </div>
+        </div>
+
+        <!-- Pizza Card -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="./public/images/pizza.jpg" class="card-img-top" alt="Pizza Ad">
+                <div class="card-body">
+                    <h5 class="card-title">Pizza</h5>
+                    <p class="card-text">Enjoy a freshly made pizza, delicious!</p>
+                    <!-- Buy Now button with link to menu.php with #pizza as the ID -->
+                    <a href="views/customer/menu.php#pizza" class="btn btn-danger">Buy Now</a>
                 </div>
             </div>
         </div>
     </div>
+    
+</div>
+
+
+
+
+
      </div>
     <!-- footer -->
-    <footer class="footer">
+    <footer class="footer mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 footer-section">
