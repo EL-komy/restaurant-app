@@ -159,6 +159,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' &&  isset($_POST['noti'])  && isset($_
                 <span>Users</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="listorders.php">
+                <i class="ri-account-pin-circle-fill"></i>
+                <span>Orders</span>
+            </a>
+        </li>
 
         <!-- Categories -->
         <li class="nav-item">

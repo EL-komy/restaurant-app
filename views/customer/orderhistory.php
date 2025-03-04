@@ -32,13 +32,23 @@ try {
 
     $userId = $user['id']; // Get the user_id
 
-    // Fetch the user's order history
+    // Fetch the user's order history with order status and payment status
     $stmt = $pdo->prepare("
-        SELECT o.id AS order_id, o.total_price, o.created_at, p.payment_method, p.status AS payment_status
-        FROM orders o
-        JOIN payments p ON o.id = p.order_id
-        WHERE o.user_id = ?
-        ORDER BY o.created_at DESC
+        SELECT 
+            o.id AS order_id, 
+            o.total_price, 
+            o.created_at, 
+            o.status AS order_status, 
+            p.payment_method, 
+            p.status AS payment_status
+        FROM 
+            orders o
+        JOIN 
+            payments p ON o.id = p.order_id
+        WHERE 
+            o.user_id = ?
+        ORDER BY 
+            o.created_at DESC
     ");
     $stmt->execute([$userId]);
     $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -61,89 +71,89 @@ try {
     <style>
         body {
             background-color: #f8f9fa;
-            /* Remove padding-top from body */
         }
         .navbar {
-    background-color: white !important; /* White background */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    z-index: 1000; /* Ensure navbar stays above other content */
-}
-
+            background-color: white !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
         .order-history-container {
             max-width: 800px;
-            margin: 80px auto 20px; /* Add margin-top to create space below the navbar */
+            margin: 80px auto 20px;
             padding: 20px;
             background: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
         .order-card {
             border: 1px solid #ddd;
             border-radius: 5px;
             padding: 15px;
             margin-bottom: 15px;
         }
-
         .order-card h5 {
             margin-bottom: 10px;
         }
-
         .order-card p {
             margin: 5px 0;
         }
-
         .order-card .status {
             font-weight: bold;
         }
-
         .order-card .status.pending {
             color: #ffc107; /* Yellow for pending */
         }
-
         .order-card .status.completed {
             color: #28a745; /* Green for completed */
         }
-
         .order-card .status.failed {
             color: #dc3545; /* Red for failed */
+        }
+        .order-card .status.preparing {
+            color: #17a2b8; /* Blue for preparing */
+        }
+        .order-card .status.ready {
+            color: #007bff; /* Blue for ready */
+        }
+        .order-card .status.delivered {
+            color: #28a745; /* Green for delivered */
         }
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
-   <!-- Navbar -->
-<nav class="navbar navbar-expand-lg sticky-top" style="background-color: white; z-index: 1000;">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="../../public/images/logo2.jpg" alt="Logo" width="50px" height="50px">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="../../index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="http://localhost:8080/views/shared/userinfo.php">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
-            </ul>
-            <a href="cart.php" class="btn btn-outline-light position-relative me-3">
-                <i class="fas fa-shopping-cart" style="color: red;"></i> <!-- FontAwesome Cart Icon -->
-                <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    <?= array_sum(array_column($_SESSION['cart'] ?? [], 'quantity')) ?>
-                </span>
+    <nav class="navbar navbar-expand-lg sticky-top" style="background-color: white; z-index: 1000;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../../public/images/logo2.jpg" alt="Logo" width="50px" height="50px">
             </a>
-            <!-- Logout Button -->
-            <?php if (isset($_SESSION['email'])): ?>
-                <a href="config/logout.php" class="btn btn-danger">Log Out</a>
-            <?php else: ?>
-                <a href="./views/shared/login.php" class="btn btn-danger">Log In</a>
-            <?php endif; ?>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="../../index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost:8080/views/shared/userinfo.php">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.php">Menu</a></li>
+                </ul>
+                <a href="cart.php" class="btn btn-outline-light position-relative me-3">
+                    <i class="fas fa-shopping-cart" style="color: red;"></i>
+                    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <?= array_sum(array_column($_SESSION['cart'] ?? [], 'quantity')) ?>
+                    </span>
+                </a>
+                <!-- Logout Button -->
+                <?php if (isset($_SESSION['email'])): ?>
+                    <a href="http://localhost:8080/config/logout.php" class="btn btn-danger">Log Out</a>
+                <?php else: ?>
+                    <a href="./views/shared/login.php" class="btn btn-danger">Log In</a>
+                <?php endif; ?>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+
     <!-- Order History Section -->
     <div class="order-history-container">
         <h2 class="text-center text-danger fw-bold mb-4">Order History</h2>
@@ -162,12 +172,18 @@ try {
                             <?= htmlspecialchars($order['payment_status']) ?>
                         </span>
                     </p>
+                    <p><strong>Order Status:</strong>
+                        <span class="status <?= htmlspecialchars($order['order_status']) ?>">
+                            <?= htmlspecialchars($order['order_status']) ?>
+                        </span>
+                    </p>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
-     <!-- Footer -->
-     <footer id="contact" class="footer text-center ">
+
+    <!-- Footer -->
+    <footer id="contact" class="footer text-center">
         <div class="container">
             <h5>Contact Us</h5>
             <p>Email: info@myrestaurant.com | Phone: +123 456 7890</p>
