@@ -21,34 +21,45 @@ if (isset($_POST['submit'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: rgb(242, 233, 233);
+            background: linear-gradient(135deg, #f5f5f5 50%,rgb(134 15 5) 50%);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            /* background-image: url('../../public/images/fryco.jpg'); */
+            /* background-size: 100% 100%; */
+        }
+        *{
+            font-size: 10px;
         }
 
         .container {
             display: flex;
-            width: 800px;
+            width: 60%;
             background: white;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
             overflow: hidden;
+             height: 90%;
+             padding: 0;
         }
 
         .form-container {
-            width: 50%;
+            width:70%;
             padding: 10px;
+            padding-left: 30px;
+         
         }
 
         .image-container {
             width: 50%;
-            border-radius: 10px;
+            margin-left: 2%;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             background: url('../../public/images/fryco.jpg') center/cover;
-        }
+            
 
+        }
+ 
         .btn-primary {
             background-color: rgb(159, 39, 39);
             border-color: rgb(159, 39, 39);
@@ -62,26 +73,32 @@ if (isset($_POST['submit'])) {
         .error {
             font-weight: bold;
             color: red;
-            margin-top: 5px;
+            font-size: xx-small;
+            margin-top: 2.5px;
         }
-
-        .error {
+        input{
+            height: 10%;
+        }
+       .error {
             font-weight: bold;
             color: red;
-            margin-top: 5px;
-            margin-bottom: 15px;
+            margin: 0;
+            /* padding-bottom: 0; */
+            margin-top: 2px;
         }
-
-        .text-center {
-            margin-top: 300px;
-        }
+        /* .signUp{
+            position: absolute;
+            top: 10%;
+            left: 20%;
+        } */
     </style>
 </head>
 
 <body>
     <div class="container">
+
         <div class="form-container">
-            <h2 class="text-center">Sign Up</h2>
+            <h4 class="text-center">Sign Up</h4>
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label">Name</label>
@@ -128,6 +145,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <button type="submit" name="submit" class="btn btn-primary w-100">Sign Up</button>
             </form>
+
         </div>
         <div class="image-container"></div>
     </div>
