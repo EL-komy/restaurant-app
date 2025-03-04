@@ -113,6 +113,14 @@ class User
         }
         return $stmt->rowCount() > 0; 
     }
+    public function updatePassword($id, $newPassword) {
+        $query = "UPDATE users SET password = :password WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':password', $newPassword);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+    
         
     // public function select($table,$email){
     //     $selectQuery="SELECT * FROM `$table` WHERE email=$email";
