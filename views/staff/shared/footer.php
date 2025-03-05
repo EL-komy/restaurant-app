@@ -24,6 +24,34 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.mark-as-read-form').forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const notificationId = formData.get('notification_id');
+            fetch('/path/to/your/update/notification/endpoint', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const notificationItem = document.querySelector(`.notification-item[data-id="${notificationId}"]`);
+                    notificationItem.querySelector('form').remove();
+                    const readSpan = document.createElement('span');
+                    readSpan.classList.add('text-muted');
+                    readSpan.textContent = 'Read';
+                    notificationItem.appendChild(readSpan);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+});
+</script>
+
 </body>
 
 </html>
