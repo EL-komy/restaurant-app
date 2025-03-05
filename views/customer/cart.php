@@ -20,6 +20,7 @@ if (isset($_GET['remove_from_cart'])) {
 
     header("Location: cart.php");
     exit();
+    // huuuhuuuuuuuuuuu
 }
 
 // Handle updating the quantity of an item
