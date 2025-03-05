@@ -16,11 +16,9 @@ class MenuController {
     public function insert($name, $category_id, $description, $price, $image) {
         $item = $this->item->insert($name, $category_id, $description, $price, $image);
         if (!$item) {
-            http_response_code(400); // Bad Request
-            echo json_encode(["message" => "Error inserting item"]);
+            return false;
         } else {
-            http_response_code(201); // Created
-            echo json_encode(["message" => "Item successfully added"]);
+            return true;
         }
     }
 
@@ -36,7 +34,6 @@ class MenuController {
     
 
     public function selectcat() {
-        // تعديل الاستعلام لعرض الأقسام مع العناصر
         $selectQuery = "SELECT c.ctegory_name as category_name, m.id as item_id, m.name  as item_name, m.description, m.price, m.image ,m.available as available
                         FROM categories c
                         JOIN menu_items m ON c.id = m.category_id";
@@ -67,7 +64,8 @@ class MenuController {
     public function selectone($id) {
         $item = $this->item->selectone($id);
         if ($item) {
-            echo json_encode($item); // Return item as JSON
+            return $item;
+            // echo json_encode($item); // Return item as JSON
         } else {
             echo json_encode(["message" => "Item not found"]);
         }

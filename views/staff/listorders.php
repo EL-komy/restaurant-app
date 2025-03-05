@@ -67,6 +67,7 @@ $query = "
         od.quantity,
         od.price AS item_price,
         mi.name AS item_name,
+        oo.customizations,
         p.payment_method,
         p.status AS payment_status
     FROM 
@@ -79,6 +80,8 @@ $query = "
         menu_items mi ON od.item_id = mi.id
     JOIN 
         payments p ON o.id = p.order_id
+    join 
+        order_options oo on o.id = oo.order_id
     ORDER BY 
         o.created_at DESC
 ";
@@ -99,13 +102,21 @@ foreach ($orders as $order) {
             'email' => $order['email'],
             'payment_method' => $order['payment_method'],
             'payment_status' => $order['payment_status'],
-            'items' => []
+            'items' => [],
+            'options' => []
         ];
     }
     $groupedOrders[$orderId]['items'][] = [
         'item_name' => $order['item_name'],
+        'customizations' => $order['customizations'],
         'quantity' => $order['quantity'],
         'item_price' => $order['item_price']
+    ];
+    $groupedOrders[$orderId]['options'][] = [
+        'item_name' => $order['item_name'],
+        'customizations' => $order['customizations'],
+        // 'quantity' => $order['quantity'],
+        // 'item_price' => $order['item_price']
     ];
 }
 ?>
@@ -138,6 +149,7 @@ foreach ($orders as $order) {
                 <th>User Name</th>
                 <th>Email</th>
                 <th>Order Items</th>
+                <th>Order options</th>
                 <th>Total Price</th>
                 <th>Order Status</th>
                 <th>Payment Status</th>
@@ -155,6 +167,13 @@ foreach ($orders as $order) {
                         <ul>
                             <?php foreach ($order['items'] as $item): ?>
                                 <li><?= $item['item_name'] ?> (Qty: <?= $item['quantity'] ?>, Price: $<?= $item['item_price'] ?>)</li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </td>
+                    <td>
+                    <ul>
+                            <?php foreach ($order['options'] as $item): ?>
+                                <li><?= $item['item_name'] ?> (option: <?= $item['customizations'] ?>)</li>
                             <?php endforeach; ?>
                         </ul>
                     </td>

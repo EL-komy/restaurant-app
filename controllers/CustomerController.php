@@ -78,7 +78,7 @@ class CustomerController {
          $this->user->delete($id);
     }
     public function getUserByEmail($email) {
-        $sql = "SELECT user_name, email, addresss, phone FROM users WHERE email = :email";
+        $sql = "SELECT user_name, email, addresss, phone ,profile_picture FROM users WHERE email = :email";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':email' => $email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);

@@ -15,20 +15,19 @@ $user = $customer->getUserByEmail($email);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    move_uploaded_file($_FILES['picture']['tmp_name'], '../../public/images' . $_FILES['picture']['name']);
+    move_uploaded_file($_FILES['picture']['tmp_name'], '../../public/images/' . $_FILES['picture']['name']);
     $name = $_POST['user_name'];
     $password = $_POST['passwordd'];
     $address = $_POST['addresss'];
     $phone = $_POST['phone'];
     $photo= $_FILES['picture']['name'];
 
-    var_dump($photo);
+    // var_dump($_FILES['picture']['tmp_name']);
 
     
     $customer->updateUser($name, $email, !empty($password) ? $password : null, $address, $phone,$photo);
     
     header("Location: userinfo.php");
-    // header("Location: userinfo.php");
     exit();
 }
 ?>
@@ -64,9 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="profile-container">
         <h2 class="text-center">Edit your Profile</h2>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             <div class="d-flex align-items-center mb-3">
-                <img src="logo2.jpg" alt="Profile Picture" class="profile-picture me-3">
+                <img src="<?php echo '../../public/images/' . ($user['profile_picture'] ? $user['profile_picture'] : 'user.png'); ?>" alt="Proooile Picture" class="profile-picture me-3">
                 <input type="file" class="btn btn-danger" name="picture">
             </div>
             <div class="mb-3">

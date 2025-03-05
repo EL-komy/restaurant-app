@@ -92,13 +92,7 @@ if (isset($_POST['submit'])) {
                     <p class="error"><?php echo $errors['phone']; ?></p>
                 <?php } ?>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Profile Picture</label>
-                <input type="file" name="profile_picture" class="form-control">
-                <?php if (isset($errors['file'])) { ?>
-                    <p class="error"><?php echo $errors['file']; ?></p>
-                <?php } ?>
-            </div>
+            
             <div class="mb-3">
                 <label class="form-label">Address</label>
                 <input type="text" name="addresss" class="form-control" value="<?php echo isset($address) ? $address : ''; ?>">

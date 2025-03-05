@@ -52,7 +52,7 @@ if (isset($_POST['change_password'])) {
 
     if (empty($currentPassword) || empty($newPassword) || empty($renewPassword)) {
         $message = "<h3 class='text-danger'>All fields are required.</h3>";
-    } elseif (!password_verify($currentPassword, $user['password'])) {
+    } elseif (!password_verify($currentPassword, $user['passwordd'])) {
         $message = "<h3 class='text-danger'>Current password is incorrect.</h3>";
     } elseif ($newPassword !== $renewPassword) {
         $message = "<h3 class='text-danger'>New passwords do not match.</h3>";

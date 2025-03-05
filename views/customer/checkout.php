@@ -47,22 +47,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$orderId, $itemId, $item['quantity'], $item['price']]);
     }
 
+    foreach ($_SESSION['cart'] as $itemId => $item) {
+        $stmt = $pdo->prepare("INSERT INTO order_options (order_id, menu_item_id, customizations) VALUES (?, ?, ?)");
+        $stmt->execute([$orderId, $itemId, $item['options'] ]);
+    }
+
     // Step 3: Insert into the `payments` table
     $paymentStatus = 'pending'; // Default payment status
     $stmt = $pdo->prepare("INSERT INTO payments (order_id, payment_method, amount, status) VALUES (?, ?, ?, ?)");
     $stmt->execute([$orderId, $paymentMethod, $totalPrice, $paymentStatus]);
     $_SESSION['order_id'] = $orderId;
-$_SESSION['total_price'] = $totalPrice;
-$_SESSION['payment_method'] = $paymentMethod;
+    $_SESSION['total_price'] = $totalPrice;
+    $_SESSION['payment_method'] = $paymentMethod;
 
-// Redirect to the success page
-header("Location: order_success.php");
-exit();
+    // Redirect to the success page
+    header("Location: order_success.php");
+    exit();
 
     // Clear the cart after the order is placed
-    
+
     // Redirect to a success page or display a success message
-   // Redirect to the success page with order details
+    // Redirect to the success page with order details
 
 }
 ?>
@@ -83,16 +88,20 @@ exit();
             border-bottom: 1px solid #ddd;
             padding: 10px 0;
         }
+
         .cart-item:last-child {
             border-bottom: none;
         }
+
         .payment-method {
             margin-top: 20px;
         }
+
         .total-price {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #dc3545; /* Red color */
+            color: #dc3545;
+            /* Red color */
             margin-top: 20px;
         }
     </style>
@@ -198,4 +207,5 @@ exit();
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

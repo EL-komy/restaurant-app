@@ -97,7 +97,7 @@ if (isset($_POST['submit'])) {
                 <div class="col-sm-10">
                   <select class="form-control" name="ctegory_name">
                     <?php foreach ($all as $c) : ?>
-                      <option value="<?php echo $c['id'] ?>" <?php echo ($c['id'] == $id) ? 'selected' : ''; ?>>
+                      <option value="<?php echo $c['id'] ?>" <?php echo ($c['id'] == $cat['category_id']) ? 'selected' : ''; ?>>
                         <?php echo $c['ctegory_name'] ?>
                       </option>
                     <?php endforeach; ?>

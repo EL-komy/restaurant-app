@@ -10,7 +10,6 @@ if($email){
   $user=$controller->getUserByEmail($email);
   
 
-//   var_dump($user);
 }else{
     header("Location:./login.php");
 }
